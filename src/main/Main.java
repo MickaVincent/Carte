@@ -8,7 +8,7 @@ public class Main {
 		// TODO Auto-generated method stub
 		System.out.println("MIKA EST MAUVAIS LOL !");
 		System.out.println("OUAIS TG GROS CON!");
-        fenetre window = new fenetre();
+		fenetre window = new fenetre();
 	}
 
 }
