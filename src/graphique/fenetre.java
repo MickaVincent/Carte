@@ -6,6 +6,7 @@ import java.awt.*;
 public class fenetre extends JFrame{
     public fenetre(){
         createWidget();
+        setWindowParameters();
         setVisible(true);
 
     }
@@ -18,6 +19,6 @@ public class fenetre extends JFrame{
 
     }
     private void setWindowParameters(){
-
+        setSize(800, 600);
     }
 }
