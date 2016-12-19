@@ -2,6 +2,7 @@ package main;
 
 import csvToArray.MonumentList;
 import csvToArray.PointInteret;
+import graphique.fenetre;
 
 import java.io.File;
 import java.util.List;
@@ -21,7 +22,7 @@ public class Main {
 		System.out.println("MIKA EST MAUVAIS LOL !");
 		System.out.println("OUAIS TG GROS CON!");
 
-		//fenetre window = new fenetre();
+		fenetre window = new fenetre();
 /*
 		Parse p1 = new Parse(new File("res\\Musee.csv"));
 		while(!p1.isFinished()) {
