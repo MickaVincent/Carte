@@ -21,12 +21,15 @@ public class fenetre extends JFrame{
     }
 
     private void createWidget() {
-
+        resManager mgr = new resManager();
+        System.out.println(mgr.mapResources.size());
         widthCarte = (new ImageIcon("res/fondCarte.jpg")).getIconWidth();
         heightCarte = (new ImageIcon("res/fondCarte.jpg")).getIconHeight();
         JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
 
         JLabel imageFond = new JLabel(new ImageIcon("res/fondCarte.jpg"));
+        ImageIcon icon = mgr.mapResources.get("gare");
+        JLabel img = new JLabel(icon);
 
         JRadioButton rb1 = new JRadioButton("Musee", false);
         rb1.setVerticalAlignment(JRadioButton.TOP);
@@ -46,7 +49,7 @@ public class fenetre extends JFrame{
         panelRight.setLayout(new FlowLayout(FlowLayout.LEFT, 50, 0));
         panelRight.add(rb1);
         panelRight.add(rb2);
-
+        panelRight.add(img);
 
         splitPane.setRightComponent(panelRight);
         splitPane.setDividerLocation(0.25);

@@ -16,13 +16,16 @@ public class Main {
 	}
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+
+		resManager mngr = new resManager();
+		mngr.loadResources("res/pictogrammes");
+
 		setPath();
 		System.out.println("MIKA EST MAUVAIS LOL !");
 		System.out.println("OUAIS TG GROS CON!");
 
 		fenetre window = new fenetre();
-        resManager mngr = new resManager();
-		mngr.loadResources("res/pictogrammes");
+
 		System.out.println("Parsing resource map");
 		mngr.parseMap();
 /*

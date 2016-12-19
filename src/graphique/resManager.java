@@ -11,7 +11,7 @@ import java.util.Set;
  * Created by mvincent on 19/12/16.
  */
 public class resManager {
-    private Map<String, ImageIcon> mapResources = new HashMap<>();
+    public Map<String, ImageIcon> mapResources = new HashMap<>();
     private static resManager ourInstance = new resManager();
 
     public static resManager getInstance() {
@@ -29,7 +29,7 @@ public class resManager {
 
             }else{
                 System.out.println(fileEntry.getName().replaceFirst("[.][^.]+$", ""));
-                String pathfile = "res/" +fileEntry.getName().replaceFirst("[.][^.]+$", "");
+                String pathfile = "res"+File.separator+fileEntry.getName().replaceFirst("[.][^.]+$", "");
                 ImageIcon icon = new ImageIcon(pathfile);
                 System.out.println("Vars created");
                 mapResources.put(fileEntry.getName().replaceFirst("[.][^.]+$", ""), icon);
