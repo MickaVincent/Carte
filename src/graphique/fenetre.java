@@ -10,6 +10,7 @@ import java.io.IOException;
 public class fenetre extends JFrame{
     private int widthCarte;
     private int heightCarte;
+    private JRadioButton rb1, rb2;
 
     public fenetre(){
         this.setResizable(false);
@@ -33,19 +34,24 @@ public class fenetre extends JFrame{
 
         JLabel img = new JLabel(icon);
 
-        JRadioButton rb1 = new JRadioButton("Musee", false);
+        rb1 = new JRadioButton("Musee", false);
         rb1.setVerticalAlignment(JRadioButton.TOP);
 
-        JRadioButton rb2 = new JRadioButton("Monuments Historique", false);
+        rb2 = new JRadioButton("Monuments Historique", false);
         rb2.setVerticalAlignment(JRadioButton.TOP);
         Dimension dim = new Dimension(widthCarte, heightCarte);
 
         imageFond.setHorizontalAlignment(JLabel.LEFT);
-        imageFond.setMinimumSize(dim);
-        imageFond.setMaximumSize(dim);
-        imageFond.setPreferredSize(dim);
 
-        splitPane.setLeftComponent(imageFond);
+
+        Container cont = new Container();
+        cont.setLayout(null);
+        imageFond.setBounds(0, 0, widthCarte, heightCarte);
+        imageFond.repaint();
+
+        cont.add(imageFond);
+        cont.setMinimumSize(dim);
+        splitPane.setLeftComponent(cont);
 
         JPanel panelRight = new JPanel();
         panelRight.setLayout(new FlowLayout(FlowLayout.LEFT, 50, 0));
@@ -60,9 +66,6 @@ public class fenetre extends JFrame{
         setContentPane(splitPane);
     }
 
-    private void setListener(){
-
-    }
     private void setWindowParameters(){
         setSize(widthCarte+500, heightCarte);
     }
