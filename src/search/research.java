@@ -69,11 +69,11 @@ public final class research {
         //For each
         for (PointInteret item : m
                 ) {
-            if(item.getClass().equals("Class cvs.MonumentHistorique")) {
+            if(item.getClass().equals("class cvsToArray.MonumentHistorique")) {
                 if (item.getDepartement() == cp || item.getDepartement() == cp/1000) {
                     res.add(item);
                 }
-            }else if(item.getClass().equals("Class cvs.Musee")){
+            }else if(item.getClass().equals("lass cvsToArray.Musee")){
                 if (item.getDepartement() == cp || item.getDepartement()/1000 == cp) {
                     res.add(item);
                 }

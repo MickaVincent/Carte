@@ -1,9 +1,12 @@
 package main;
 
+import csvToArray.MonumentList;
+import csvToArray.PointInteret;
 import graphique.fenetre;
 import graphique.resManager;
 
 import java.io.File;
+import java.util.List;
 
 public class Main {
 
@@ -39,12 +42,12 @@ public class Main {
 			System.out.println(p2.nextField());
 		}
 */
-/*		MonumentList ml = new MonumentList(pathMusee, pathMonument);
+		MonumentList ml = new MonumentList(pathMusee, pathMonument);
 		List<PointInteret> m = ml.getFullList();
 		for(int i = 0; i < m.size(); i++){
-			System.out.println(m.get(i));
+			System.out.print(m.get(i));
+			System.out.println(m.get(i).getClass());
 		}
-*/
 	}
 
 }
