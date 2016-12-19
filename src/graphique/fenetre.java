@@ -21,7 +21,7 @@ public class fenetre extends JFrame{
     }
 
     private void createWidget() {
-        resManager mgr = new resManager();
+        resManager mgr = resManager.getInstance();
         System.out.println(mgr.mapResources.size());
         widthCarte = (new ImageIcon("res/fondCarte.jpg")).getIconWidth();
         heightCarte = (new ImageIcon("res/fondCarte.jpg")).getIconHeight();

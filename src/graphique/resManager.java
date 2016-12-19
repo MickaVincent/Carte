@@ -15,6 +15,7 @@ public class resManager {
     private static resManager ourInstance = new resManager();
 
     public static resManager getInstance() {
+        //loadResources(pathname);
         return ourInstance;
     }
 
