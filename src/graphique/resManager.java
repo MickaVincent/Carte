@@ -3,6 +3,7 @@ package graphique;
 import javax.swing.*;
 import java.io.File;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
@@ -10,67 +11,7 @@ import java.util.Set;
  * Created by mvincent on 19/12/16.
  */
 public class resManager {
-    private Map<String, ImageIcon> mapResources = new Map<String, ImageIcon>() {
-        @Override
-        public int size() {
-            return 0;
-        }
-
-        @Override
-        public boolean isEmpty() {
-            return false;
-        }
-
-        @Override
-        public boolean containsKey(Object key) {
-            return false;
-        }
-
-        @Override
-        public boolean containsValue(Object value) {
-            return false;
-        }
-
-        @Override
-        public ImageIcon get(Object key) {
-            return null;
-        }
-
-        @Override
-        public ImageIcon put(String key, ImageIcon value) {
-            return null;
-        }
-
-        @Override
-        public ImageIcon remove(Object key) {
-            return null;
-        }
-
-        @Override
-        public void putAll(Map<? extends String, ? extends ImageIcon> m) {
-
-        }
-
-        @Override
-        public void clear() {
-
-        }
-
-        @Override
-        public Set<String> keySet() {
-            return null;
-        }
-
-        @Override
-        public Collection<ImageIcon> values() {
-            return null;
-        }
-
-        @Override
-        public Set<Entry<String, ImageIcon>> entrySet() {
-            return null;
-        }
-    };
+    private Map<String, ImageIcon> mapResources = new HashMap<>();
     private static resManager ourInstance = new resManager();
 
     public static resManager getInstance() {
