@@ -10,7 +10,7 @@ import java.util.Scanner;
  */
 
 public class Parse {
-    private static final char DEFAULT_SEPARATOR = '\t';
+    private static final String DEFAULT_SEPARATOR = "\t";
     //private static final char DEFAULT_NEW_LINE = '\n';
     //private static String str;
 
@@ -31,7 +31,7 @@ public class Parse {
             fileScan.nextLine();
 
             //sc n'aura qu'une seule ligne a parsé avec la tabulation comme séparateur
-            sc = new Scanner(fileScan.nextLine()).useDelimiter("DEFAULT_SEPARATOR");
+            sc = new Scanner(fileScan.nextLine()).useDelimiter(DEFAULT_SEPARATOR);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -55,7 +55,7 @@ public class Parse {
     //nouvelle ligne, on reprécise le délimiteur
     public void nextLine(){
         sc.close();
-        sc = new Scanner(fileScan.nextLine()).useDelimiter("DEFAULT_SEPARATOR");
+        sc = new Scanner(fileScan.nextLine()).useDelimiter(DEFAULT_SEPARATOR);
     }
 
     //ferme tous les scanners ouvert

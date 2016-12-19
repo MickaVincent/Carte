@@ -5,8 +5,6 @@ package csvToArray;
  */
 public class Musee extends PointInteret {
     private String adresse;
-    private int codePostal;
-    private String commune;
     private String acces;
     private String telephone;
     private String courriel;
@@ -18,8 +16,8 @@ public class Musee extends PointInteret {
         return "Musee{" +
                 "nom ='" + super.getNom() + '\'' +
                 ", adresse='" + adresse + '\'' +
-                ", codePostal='" + codePostal + '\'' +
-                ", commune='" + commune + '\'' +
+                ", codePostal='" + super.getDepartement() + '\'' +
+                ", commune='" + super.getCommune() + '\'' +
                 ", NumInsee='" + super.getNumInsee() + '\'' +
                 ", acces='" + acces + '\'' +
                 ", Latitude='" + super.getLatitude() + '\'' +
@@ -35,10 +33,8 @@ public class Musee extends PointInteret {
     public Musee(int numInsee, float latitude, float longitude, String nom, String desc, String adresse,
                  int codePostal, String commune, String acces, String telephone, String courriel,
                  String siteInternet, String facebook) {
-        super(numInsee, latitude, longitude, nom, desc);
+        super(numInsee, latitude, longitude, nom, desc, commune, codePostal);
         this.adresse = adresse;
-        this.codePostal = codePostal;
-        this.commune = commune;
         this.acces = acces;
         this.telephone = telephone;
         this.courriel = courriel;
@@ -51,11 +47,7 @@ public class Musee extends PointInteret {
     }
 
     public int getCodePostal() {
-        return codePostal;
-    }
-
-    public String getCommune() {
-        return commune;
+        return super.getDepartement();
     }
 
     public String getAcces() {

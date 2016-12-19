@@ -9,13 +9,18 @@ public abstract class PointInteret {
     private float longitude;
     private String nom;
     private String description;
+    private String commune;
+    private int departement;
 
-    public PointInteret(int numInsee, float latitude, float longitude, String nom, String desc) {
+    public PointInteret(int numInsee, float latitude, float longitude, String nom, String desc, String commune,
+                        int departement) {
         this.numInsee = numInsee;
         this.latitude = latitude;
         this.longitude = longitude;
         this.nom = nom;
         description = desc;
+        this.commune = commune;
+        this.departement = departement;
     }
 
     @Override
@@ -26,6 +31,7 @@ public abstract class PointInteret {
                 ", longitude=" + longitude +
                 ", nom='" + nom + '\'' +
                 ", description='" + description + '\'' +
+                ", commune='" + commune + '\'' +
                 '}';
     }
 
@@ -47,5 +53,13 @@ public abstract class PointInteret {
 
     public String getDescription(){
         return description;
+    }
+
+    public String getCommune(){
+        return commune;
+    }
+
+    public int getDepartement(){
+        return departement;
     }
 }
