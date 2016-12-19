@@ -3,6 +3,8 @@ package graphique;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -51,9 +53,10 @@ public class fenetre extends JFrame{
         rb2 = new JRadioButton("Monuments Historique", false);
         rb2.setVerticalAlignment(JRadioButton.TOP);
 
+        JLabel label = new JLabel(mgr.mapResources.get("gare"));
         panelRight.add(rb1);
         panelRight.add(rb2);
-
+        panelRight.add(label);
         //Instanciation/Set du panel gauche
 
         contLeft = new Container();
@@ -71,5 +74,23 @@ public class fenetre extends JFrame{
 
     private void setWindowParameters(){
         setSize(widthCarte+500, heightCarte);
+    }
+    private void setListener(){
+        rb1.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                if(rb1.isSelected()){
+
+                }
+            }
+        });
+        rb2.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                if(rb2.isSelected()){
+
+                }
+            }
+        });
     }
 }
