@@ -1,5 +1,6 @@
 package search;
 
+import csvToArray.MonumentHistorique;
 import csvToArray.PointInteret;
 
 import java.text.Normalizer;
@@ -47,7 +48,7 @@ public final class research {
         return res;
     }
 
-    //Renvoie une liste suivant si "numInsee" est dans un nom ou designation d'un point d'interet
+    //Renvoie une liste suivant si "numInsee" est dans un point d'interet
     public static List<PointInteret> getWithCommune(int numInsee, List<PointInteret> m){
         List<PointInteret> res = new ArrayList<PointInteret>();
 
@@ -67,7 +68,61 @@ public final class research {
         //For each
         for (PointInteret item : m
                 ) {
-            if(item.getDepartement() == cp) {
+            if(item.getClass().equals("Class cvs.MonumentHistorique")) {
+                if (item.getDepartement() == cp || item.getDepartement() == cp/1000) {
+                    res.add(item);
+                }
+            }else if(item.getClass().equals("Class cvs.Musee")){
+                if (item.getDepartement() == cp || item.getDepartement()/1000 == cp) {
+                    res.add(item);
+                }
+            }
+        }
+        return res;
+    }
+
+    //A N'APPELER QU'AVEC UNE LISTE DE MONUMENT HISTORIQUE
+    public static List<MonumentHistorique> getWithCategorie(String categorie, List<MonumentHistorique> m){
+        List<MonumentHistorique> res = new ArrayList<MonumentHistorique>();
+        //Enlève les accents de categorie et le met en minuscule
+        categorie = Normalizer.normalize(categorie, Normalizer.Form.NFD).toLowerCase();
+
+        //For each
+        for (MonumentHistorique item : m
+                ) {
+            //met le nom d'item sans accents et en minuscule + regarde si categorie est dedans
+            if(item.getCategorie().replaceAll("\\p{M}", "").toLowerCase().contains(categorie)) {
+                res.add(item);
+            }
+        }
+        return res;
+    }
+
+    //A N'APPELER QU'AVEC UNE LISTE DE MONUMENT HISTORIQUE
+    public static List<MonumentHistorique> getWithDesignation(String designation, List<MonumentHistorique> m){
+        List<MonumentHistorique> res = new ArrayList<MonumentHistorique>();
+        //Enlève les accents de designation et le met en minuscule
+        designation = Normalizer.normalize(designation, Normalizer.Form.NFD).toLowerCase();
+
+        //For each
+        for (MonumentHistorique item : m
+                ) {
+            //met le nom d'item sans accents et en minuscule + regarde si designation est dedans
+            if(item.getCategorie().replaceAll("\\p{M}", "").toLowerCase().contains(designation)) {
+                res.add(item);
+            }
+        }
+        return res;
+    }
+
+    //A N'APPELER QU'AVEC UNE LISTE DE MONUMENT HISTORIQUE
+    public static List<MonumentHistorique> getWithReference(String reference, List<MonumentHistorique> m){
+        List<MonumentHistorique> res = new ArrayList<MonumentHistorique>();
+
+        //For each
+        for (MonumentHistorique item : m
+                ) {
+            if(item.getReference().contains(reference.toUpperCase())) {
                 res.add(item);
             }
         }
