@@ -1,6 +1,7 @@
 package search;
 
 import csvToArray.MonumentHistorique;
+import csvToArray.Musee;
 import csvToArray.PointInteret;
 
 import java.text.Normalizer;
@@ -123,6 +124,23 @@ public final class research {
         for (MonumentHistorique item : m
                 ) {
             if(item.getReference().contains(reference.toUpperCase())) {
+                res.add(item);
+            }
+        }
+        return res;
+    }
+
+    //A N'APPELER QU'AVEC UNE LISTE DE MUSEE
+    public static List<Musee> getWithAdresse(String adresse, List<Musee> m){
+        List<Musee> res = new ArrayList<Musee>();
+        //Enlève les accents de adresse et le met en minuscule
+        adresse = Normalizer.normalize(adresse, Normalizer.Form.NFD).toLowerCase();
+
+        //For each
+        for (Musee item : m
+                ) {
+            //met le nom d'item sans accents et en minuscule + regarde si adresse est dedans
+            if(item.getAdresse().replaceAll("\\p{M}", "").toLowerCase().contains(adresse)) {
                 res.add(item);
             }
         }
