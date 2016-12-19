@@ -1,14 +1,15 @@
 package csvToArray;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Hamor on 19/12/2016.
  */
 public class MonumentList {
-    private List<MonumentMusee> monumentMuseesList = null;
-    private List<MonumentHistorique> monumentHistoriqueList = null;
+    private List<MonumentMusee> monumentMuseesList = new ArrayList<MonumentMusee>();
+    private List<MonumentHistorique> monumentHistoriqueList = new ArrayList<MonumentHistorique>();
 
     public MonumentList(String pathToMusee, String pathToHistorique){
         Parse pMusee = new Parse(new File(pathToMusee));
@@ -26,9 +27,11 @@ public class MonumentList {
             String site = pMusee.nextField();
             String facebook = pMusee.nextField();
             String descriptif = pMusee.nextField();
-
-            monumentMuseesList.add(new MonumentMusee(numInsee, latitude, longitude, name, descriptif, addresse, cp,
-                    commune, acces, telephone, courriel, site, facebook));
+            MonumentMusee m = new MonumentMusee(numInsee, latitude, longitude, name, descriptif, addresse, cp,
+                    commune, acces, telephone, courriel, site, facebook);
+            //System.out.println(m);
+            monumentMuseesList.add(m);
+            pMusee.nextLine();
         }
         pMusee.close();
 
@@ -38,6 +41,7 @@ public class MonumentList {
             float longitude = Float.parseFloat(pHistorique.nextField());
             String reference = pHistorique.nextField();
             int departement = Integer.parseInt(pHistorique.nextField());
+            String commune = pHistorique.nextField();
             int insee = Integer.parseInt(pHistorique.nextField());
             String categorie = pHistorique.nextField();
             String designation = pHistorique.nextField();
@@ -46,11 +50,14 @@ public class MonumentList {
             String protection = pHistorique.nextField();
             String auteur = pHistorique.nextField();
             String siecle = pHistorique.nextField();
-
-            monumentHistoriqueList.add(new MonumentHistorique(insee, latitude, longitude, designation, description,
-                    reference, departement, categorie, proprietaire, protection, auteur, siecle));
+            MonumentHistorique m = new MonumentHistorique(insee, latitude, longitude, designation, description,
+                    reference, departement, commune, categorie, proprietaire, protection, auteur, siecle);
+            //System.out.println(m);
+            monumentHistoriqueList.add(m);
+            pHistorique.nextLine();
         }
         pHistorique.close();
+
     }
 
     public List<MonumentMusee> getMonumentMuseesList() {

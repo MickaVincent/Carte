@@ -18,6 +18,17 @@ public abstract class Monument {
         description = desc;
     }
 
+    @Override
+    public String toString() {
+        return "Monument{" +
+                "numInsee=" + numInsee +
+                ", latitude=" + latitude +
+                ", longitude=" + longitude +
+                ", nom='" + nom + '\'' +
+                ", description='" + description + '\'' +
+                '}';
+    }
+
     public int getNumInsee() {
         return numInsee;
     }

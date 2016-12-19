@@ -7,6 +7,7 @@ public class MonumentHistorique extends Monument{
 
     private String reference;
     private int departement;
+    private String commune;
     private String categorie;
     private String proprietaire;
     private String dateProtection;
@@ -14,11 +15,12 @@ public class MonumentHistorique extends Monument{
     private String siecle;
 
     public MonumentHistorique(int numInsee, float latitude, float longitude, String nom, String desc, String reference,
-                              int departement, String categorie, String proprietaire, String dateProtection,
+                              int departement, String commune, String categorie, String proprietaire, String dateProtection,
                               String auteurs, String siecle) {
         super(numInsee, latitude, longitude, nom, desc);
         this.reference = reference;
         this.departement = departement;
+        this.commune = commune;
         this.categorie = categorie;
         this.proprietaire = proprietaire;
         this.dateProtection = dateProtection;
@@ -28,13 +30,18 @@ public class MonumentHistorique extends Monument{
 
     @Override
     public String toString() {
-        return "MonumentHistorique{" +
-                "reference='" + reference + '\'' +
-                ", departement=" + departement +
+        return  "MonumentHistorique{" +
+                ", Latitude='" + super.getLatitude() + '\'' +
+                ", Longitude='" + super.getLongitude() + '\'' +
+                ", reference='" + reference + '\'' +
+                ", departement=" + departement + '\'' +
+                ", commune=" + commune + '\'' +
+                ", INSEE='" + super.getNumInsee() + '\'' +
                 ", categorie='" + categorie + '\'' +
                 ", proprietaire='" + proprietaire + '\'' +
+                ", description='" + super.getDescription() + '\'' +
                 ", dateProtection='" + dateProtection + '\'' +
-                ", auteurs='" + auteurs + '\'' +
+                ", auteur(s)='" + auteurs + '\'' +
                 ", siecle='" + siecle + '\'' +
                 '}';
     }

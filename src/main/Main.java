@@ -1,6 +1,9 @@
 package main;
 
+import csvToArray.Monument;
 import csvToArray.MonumentList;
+
+import java.util.List;
 
 public class Main {
 
@@ -22,7 +25,10 @@ public class Main {
 		}
 */
 		MonumentList ml = new MonumentList("res\\Musee.csv", "res\\MonumentsHistoriquesFrancheComte.csv");
-
+		List<Monument> m = ml.getFullList();
+		for(int i = 0; i < m.size(); i++){
+			System.out.println(m.get(i));
+		}
 
 	}
 

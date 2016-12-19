@@ -16,14 +16,19 @@ public class MonumentMusee extends Monument{
     @Override
     public String toString() {
         return "MonumentMusee{" +
-                "adresse='" + adresse + '\'' +
+                "nom ='" + super.getNom() + '\'' +
+                ", adresse='" + adresse + '\'' +
                 ", codePostal='" + codePostal + '\'' +
                 ", commune='" + commune + '\'' +
+                ", NumInsee='" + super.getNumInsee() + '\'' +
                 ", acces='" + acces + '\'' +
+                ", Latitude='" + super.getLatitude() + '\'' +
+                ", Longitude='" + super.getLongitude() + '\'' +
                 ", telephone='" + telephone + '\'' +
                 ", courriel='" + courriel + '\'' +
                 ", siteInternet='" + siteInternet + '\'' +
                 ", facebook='" + facebook + '\'' +
+                ", DescriptifLong='" + super.getDescription() + '\'' +
                 '}';
     }
 
