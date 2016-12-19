@@ -10,6 +10,9 @@ import java.io.IOException;
 public class fenetre extends JFrame{
     private int widthCarte;
     private int heightCarte;
+    private resManager mgr = resManager.getInstance();
+    private Container contLeft;
+    private JPanel panelRight;
     private JRadioButton rb1, rb2;
 
     public fenetre(){
@@ -22,46 +25,46 @@ public class fenetre extends JFrame{
     }
 
     private void createWidget() {
-        resManager mgr = resManager.getInstance();
-        System.out.println(mgr.mapResources.size());
+
         widthCarte = (new ImageIcon("res/fondCarte.jpg")).getIconWidth();
         heightCarte = (new ImageIcon("res/fondCarte.jpg")).getIconHeight();
+
         JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
 
-        JLabel imageFond = new JLabel(new ImageIcon("res"+File.separator+"fondCarte.jpg"));
-        ImageIcon icon = null;
-        icon = mgr.mapResources.get("gare");
+        //Instanciation panel droite/Set
 
-        JLabel img = new JLabel(icon);
+        panelRight = new JPanel();
+        panelRight.setLayout(new FlowLayout(FlowLayout.LEFT, 50, 0));
+
+        //Instanciation des widget du panel Droite
 
         rb1 = new JRadioButton("Musee", false);
         rb1.setVerticalAlignment(JRadioButton.TOP);
 
         rb2 = new JRadioButton("Monuments Historique", false);
         rb2.setVerticalAlignment(JRadioButton.TOP);
-        Dimension dim = new Dimension(widthCarte, heightCarte);
 
-        imageFond.setHorizontalAlignment(JLabel.LEFT);
-
-
-        Container cont = new Container();
-        cont.setLayout(null);
-        imageFond.setBounds(0, 0, widthCarte, heightCarte);
-        imageFond.repaint();
-
-        cont.add(imageFond);
-        cont.setMinimumSize(dim);
-        splitPane.setLeftComponent(cont);
-
-        JPanel panelRight = new JPanel();
-        panelRight.setLayout(new FlowLayout(FlowLayout.LEFT, 50, 0));
         panelRight.add(rb1);
         panelRight.add(rb2);
-        panelRight.add(img);
 
+        //Instanciation/Set du panel gauche
+
+        contLeft = new Container();
+        contLeft.setLayout(null);
+
+        Dimension dim = new Dimension(widthCarte, heightCarte);
+        contLeft.setMinimumSize(dim);
+
+        //Instanciation des widgets du panel Gauche
+
+        JLabel imageFond = new JLabel(new ImageIcon("res"+File.separator+"fondCarte.jpg"));
+        imageFond.setHorizontalAlignment(JLabel.LEFT);
+        imageFond.setBounds(0, 0, widthCarte, heightCarte);
+        imageFond.repaint();
+        contLeft.add(imageFond);
+
+        splitPane.setLeftComponent(contLeft);
         splitPane.setRightComponent(panelRight);
-        splitPane.setDividerLocation(0.25);
-
 
         setContentPane(splitPane);
     }
