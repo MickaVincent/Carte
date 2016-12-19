@@ -21,8 +21,7 @@ public class Main {
 			System.out.println(p2.nextField());
 		}
 */
-		MonumentList ml = new MonumentList("C:\\Users\\Hamor\\Desktop\\Carte\\res\\Musee.csv",
-				"C:\\Users\\Hamor\\Desktop\\Carte\\res\\MonumentsHistoriquesFrancheComte.csv");
+		MonumentList ml = new MonumentList("res\\Musee.csv", "res\\MonumentsHistoriquesFrancheComte.csv");
 
 
 	}
