@@ -1,8 +1,6 @@
 package main;
 
-import csvToArray.Parse;
-
-import java.io.File;
+import csvToArray.MonumentList;
 
 public class Main {
 
@@ -12,10 +10,21 @@ public class Main {
 		System.out.println("OUAIS TG GROS CON!");
 
 		//fenetre window = new fenetre();
-		Parse p = new Parse(new File("C:\\Users\\Hamor\\Desktop\\Carte\\res\\Musee.csv"));
-		while(!p.isFinished()) {
-			System.out.println(p.nextField());
+/*
+		Parse p1 = new Parse(new File("res\\Musee.csv"));
+		while(!p1.isFinished()) {
+			System.out.println(p1.nextField());
 		}
+
+		Parse p2 = new Parse(new File("res\\MonumentsHistoriquesFrancheComte.csv"));
+		while(!p2.isFinished()) {
+			System.out.println(p2.nextField());
+		}
+*/
+		MonumentList ml = new MonumentList("C:\\Users\\Hamor\\Desktop\\Carte\\res\\Musee.csv",
+				"C:\\Users\\Hamor\\Desktop\\Carte\\res\\MonumentsHistoriquesFrancheComte.csv");
+
+
 	}
 
 }

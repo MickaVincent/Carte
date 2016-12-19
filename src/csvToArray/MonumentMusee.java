@@ -5,7 +5,7 @@ package csvToArray;
  */
 public class MonumentMusee extends Monument{
     private String adresse;
-    private String codePostal;
+    private int codePostal;
     private String commune;
     private String acces;
     private String telephone;
@@ -13,8 +13,22 @@ public class MonumentMusee extends Monument{
     private String siteInternet;
     private String facebook;
 
+    @Override
+    public String toString() {
+        return "MonumentMusee{" +
+                "adresse='" + adresse + '\'' +
+                ", codePostal='" + codePostal + '\'' +
+                ", commune='" + commune + '\'' +
+                ", acces='" + acces + '\'' +
+                ", telephone='" + telephone + '\'' +
+                ", courriel='" + courriel + '\'' +
+                ", siteInternet='" + siteInternet + '\'' +
+                ", facebook='" + facebook + '\'' +
+                '}';
+    }
+
     public MonumentMusee(int numInsee, float latitude, float longitude, String nom, String desc, String adresse,
-                         String codePostal, String commune, String acces, String telephone, String courriel,
+                         int codePostal, String commune, String acces, String telephone, String courriel,
                          String siteInternet, String facebook) {
         super(numInsee, latitude, longitude, nom, desc);
         this.adresse = adresse;
@@ -31,7 +45,7 @@ public class MonumentMusee extends Monument{
         return adresse;
     }
 
-    public String getCodePostal() {
+    public int getCodePostal() {
         return codePostal;
     }
 

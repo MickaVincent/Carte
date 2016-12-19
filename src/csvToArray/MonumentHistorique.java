@@ -11,10 +11,11 @@ public class MonumentHistorique extends Monument{
     private String proprietaire;
     private String dateProtection;
     private String auteurs;
+    private String siecle;
 
     public MonumentHistorique(int numInsee, float latitude, float longitude, String nom, String desc, String reference,
                               int departement, String categorie, String proprietaire, String dateProtection,
-                              String auteurs) {
+                              String auteurs, String siecle) {
         super(numInsee, latitude, longitude, nom, desc);
         this.reference = reference;
         this.departement = departement;
@@ -22,6 +23,20 @@ public class MonumentHistorique extends Monument{
         this.proprietaire = proprietaire;
         this.dateProtection = dateProtection;
         this.auteurs = auteurs;
+        this.siecle = siecle;
+    }
+
+    @Override
+    public String toString() {
+        return "MonumentHistorique{" +
+                "reference='" + reference + '\'' +
+                ", departement=" + departement +
+                ", categorie='" + categorie + '\'' +
+                ", proprietaire='" + proprietaire + '\'' +
+                ", dateProtection='" + dateProtection + '\'' +
+                ", auteurs='" + auteurs + '\'' +
+                ", siecle='" + siecle + '\'' +
+                '}';
     }
 
     public String getReference() {
@@ -46,6 +61,10 @@ public class MonumentHistorique extends Monument{
 
     public String getAuteurs() {
         return auteurs;
+    }
+
+    public String getSiecle() {
+        return siecle;
     }
 
 }

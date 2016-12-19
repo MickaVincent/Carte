@@ -11,7 +11,7 @@ import java.util.Scanner;
 public class Parse {
     private static final char DEFAULT_SEPARATOR = '\t';
     private static final char DEFAULT_NEW_LINE = '\n';
-    private static String str;
+    //private static String str;
     private Scanner sc;
 
     //Constructeur
