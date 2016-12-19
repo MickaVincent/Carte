@@ -14,7 +14,7 @@ public class fenetre extends JFrame{
     private Container contLeft;
     private JPanel panelRight;
     private JRadioButton rb1, rb2;
-
+    private JSplitPane splitPane;
     public fenetre(){
         this.setResizable(false);
         createWidget();
@@ -26,10 +26,17 @@ public class fenetre extends JFrame{
 
     private void createWidget() {
 
-        widthCarte = (new ImageIcon("res/fondCarte.jpg")).getIconWidth();
-        heightCarte = (new ImageIcon("res/fondCarte.jpg")).getIconHeight();
+        //Instanciation des widgets du panel Gauche
 
-        JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
+        JLabel imageFond = new JLabel(new ImageIcon("res"+File.separator+"fondCarte.jpg"));
+        imageFond.setHorizontalAlignment(JLabel.LEFT);
+        widthCarte = imageFond.getIcon().getIconWidth();
+        heightCarte = imageFond.getIcon().getIconHeight();
+        imageFond.setBounds(0, 0, widthCarte, heightCarte);
+        imageFond.repaint();
+
+
+        splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
 
         //Instanciation panel droite/Set
 
@@ -54,13 +61,6 @@ public class fenetre extends JFrame{
 
         Dimension dim = new Dimension(widthCarte, heightCarte);
         contLeft.setMinimumSize(dim);
-
-        //Instanciation des widgets du panel Gauche
-
-        JLabel imageFond = new JLabel(new ImageIcon("res"+File.separator+"fondCarte.jpg"));
-        imageFond.setHorizontalAlignment(JLabel.LEFT);
-        imageFond.setBounds(0, 0, widthCarte, heightCarte);
-        imageFond.repaint();
         contLeft.add(imageFond);
 
         splitPane.setLeftComponent(contLeft);
