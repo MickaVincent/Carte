@@ -1,14 +1,23 @@
 package main;
 
-import csvToArray.PointInteret;
 import csvToArray.MonumentList;
+import csvToArray.PointInteret;
 
+import java.io.File;
 import java.util.List;
 
 public class Main {
 
+	static String pathMusee;
+	static String pathMonument;
+
+	private static void setPath(){
+		pathMusee = "res" + File.separator + "Musee.csv";
+		pathMonument = "res" + File.separator + "MonumentsHistoriquesFrancheComte.csv";
+	}
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		setPath();
 		System.out.println("MIKA EST MAUVAIS LOL !");
 		System.out.println("OUAIS TG GROS CON!");
 
@@ -24,7 +33,7 @@ public class Main {
 			System.out.println(p2.nextField());
 		}
 */
-		MonumentList ml = new MonumentList("res\\Musee.csv", "res\\MonumentsHistoriquesFrancheComte.csv");
+		MonumentList ml = new MonumentList(pathMusee, pathMonument);
 		List<PointInteret> m = ml.getFullList();
 		for(int i = 0; i < m.size(); i++){
 			System.out.println(m.get(i));
