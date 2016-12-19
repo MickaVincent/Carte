@@ -26,13 +26,9 @@ public class resManager {
         File folder = new File(pathToResources);
 
         for (File fileEntry : folder.listFiles()){
-            if(fileEntry.isDirectory()){
-
-            }else{
-                System.out.println(fileEntry.getName().replaceFirst("[.][^.]+$", ""));
-                String pathfile = "res"+File.separator+fileEntry.getName().replaceFirst("[.][^.]+$", "");
+            if(!fileEntry.isDirectory()){
+                String pathfile = "res"+File.separator+"pictogrammes"+File.separator+fileEntry.getName();
                 ImageIcon icon = new ImageIcon(pathfile);
-                System.out.println("Vars created");
                 mapResources.put(fileEntry.getName().replaceFirst("[.][^.]+$", ""), icon);
             }
         }

@@ -28,9 +28,11 @@ public class fenetre extends JFrame{
         JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
 
         JLabel imageFond = new JLabel(new ImageIcon("res/fondCarte.jpg"));
-        ImageIcon icon = mgr.mapResources.get("gare");
-        JLabel img = new JLabel(icon);
+        ImageIcon icon = null;
+        icon = mgr.mapResources.get("gare");
 
+        JLabel img = new JLabel(icon);
+        img.setVerticalAlignment(SwingConstants.BOTTOM);
         JRadioButton rb1 = new JRadioButton("Musee", false);
         rb1.setVerticalAlignment(JRadioButton.TOP);
 
