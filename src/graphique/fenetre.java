@@ -12,6 +12,7 @@ public class fenetre extends JFrame{
     private int heightCarte;
 
     public fenetre(){
+        this.setResizable(false);
         createWidget();
         setWindowParameters();
 
