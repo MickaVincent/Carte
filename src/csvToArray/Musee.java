@@ -3,7 +3,7 @@ package csvToArray;
 /**
  * Created by Hamor on 19/12/2016.
  */
-public class MonumentMusee extends Monument{
+public class Musee extends PointInteret {
     private String adresse;
     private int codePostal;
     private String commune;
@@ -15,7 +15,7 @@ public class MonumentMusee extends Monument{
 
     @Override
     public String toString() {
-        return "MonumentMusee{" +
+        return "Musee{" +
                 "nom ='" + super.getNom() + '\'' +
                 ", adresse='" + adresse + '\'' +
                 ", codePostal='" + codePostal + '\'' +
@@ -32,9 +32,9 @@ public class MonumentMusee extends Monument{
                 '}';
     }
 
-    public MonumentMusee(int numInsee, float latitude, float longitude, String nom, String desc, String adresse,
-                         int codePostal, String commune, String acces, String telephone, String courriel,
-                         String siteInternet, String facebook) {
+    public Musee(int numInsee, float latitude, float longitude, String nom, String desc, String adresse,
+                 int codePostal, String commune, String acces, String telephone, String courriel,
+                 String siteInternet, String facebook) {
         super(numInsee, latitude, longitude, nom, desc);
         this.adresse = adresse;
         this.codePostal = codePostal;

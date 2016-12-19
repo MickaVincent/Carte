@@ -8,7 +8,7 @@ import java.util.List;
  * Created by Hamor on 19/12/2016.
  */
 public class MonumentList {
-    private List<MonumentMusee> monumentMuseesList = new ArrayList<MonumentMusee>();
+    private List<Musee> museesList = new ArrayList<Musee>();
     private List<MonumentHistorique> monumentHistoriqueList = new ArrayList<MonumentHistorique>();
 
     public MonumentList(String pathToMusee, String pathToHistorique){
@@ -27,10 +27,10 @@ public class MonumentList {
             String site = pMusee.nextField();
             String facebook = pMusee.nextField();
             String descriptif = pMusee.nextField();
-            MonumentMusee m = new MonumentMusee(numInsee, latitude, longitude, name, descriptif, addresse, cp,
+            Musee m = new Musee(numInsee, latitude, longitude, name, descriptif, addresse, cp,
                     commune, acces, telephone, courriel, site, facebook);
             //System.out.println(m);
-            monumentMuseesList.add(m);
+            museesList.add(m);
             pMusee.nextLine();
         }
         pMusee.close();
@@ -60,18 +60,18 @@ public class MonumentList {
 
     }
 
-    public List<MonumentMusee> getMonumentMuseesList() {
-        return monumentMuseesList;
+    public List<Musee> getMuseesList() {
+        return museesList;
     }
 
     public List<MonumentHistorique> getMonumentHistoriqueList() {
         return monumentHistoriqueList;
     }
 
-    public List<Monument> getFullList(){
-        List<Monument> res = new java.util.ArrayList<Monument>();
+    public List<PointInteret> getFullList(){
+        List<PointInteret> res = new java.util.ArrayList<PointInteret>();
         res.addAll(monumentHistoriqueList);
-        res.addAll(monumentMuseesList);
+        res.addAll(museesList);
         return res;
     }
 }

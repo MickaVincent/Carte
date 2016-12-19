@@ -3,14 +3,14 @@ package csvToArray;
 /**
  * Created by Hamor on 19/12/2016.
  */
-public abstract class Monument {
+public abstract class PointInteret {
     private int numInsee;
     private float latitude;
     private float longitude;
     private String nom;
     private String description;
 
-    public Monument(int numInsee, float latitude, float longitude, String nom, String desc) {
+    public PointInteret(int numInsee, float latitude, float longitude, String nom, String desc) {
         this.numInsee = numInsee;
         this.latitude = latitude;
         this.longitude = longitude;

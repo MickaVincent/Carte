@@ -3,7 +3,7 @@ package csvToArray;
 /**
  * Created by Hamor on 19/12/2016.
  */
-public class MonumentHistorique extends Monument{
+public class MonumentHistorique extends PointInteret {
 
     private String reference;
     private int departement;
