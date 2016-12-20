@@ -22,8 +22,8 @@ public class fenetre extends JFrame{
     private Container contLeft;
     private JPanel panelRight;
     private JRadioButton rb1, rb2;
-
-    private java.util.List<Musee> listMuseums;
+    private JScrollPane scroll;
+    private java.util.List<Musee> listMuseums = null;
     private JList<String> listDeroulante;
     private JSplitPane splitPane;
     //private MonumentList monumentList = new MonumentList("res"+File.separator+"Musee.csv", "res"+File.separator+"MonumentsHistoriquesFrancheComte.csv");
@@ -50,27 +50,27 @@ public class fenetre extends JFrame{
         imageFond.setBounds(0, 0, widthCarte, heightCarte);
         imageFond.repaint();
 
-
         splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
+        splitPane.setEnabled(false);
 
         //Instanciation panel droite/Set
 
         panelRight = new JPanel();
-        panelRight.setLayout(new FlowLayout(FlowLayout.RIGHT, 0, 0));
+        panelRight.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
 
         //Instanciation des widget du panel Droite
 
+        scroll = new JScrollPane();
+        scroll.setPreferredSize(new Dimension(500, heightCarte-10));
+
         DefaultListModel<String> model = new DefaultListModel<>();
+
         listDeroulante = new JList<>(model);
         listDeroulante.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-        listDeroulante.setMinimumSize(new Dimension(200, 200));
-        listDeroulante.setMaximumSize(new Dimension(200, 200));
-        listDeroulante.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+        listDeroulante.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
         listDeroulante.setLayoutOrientation(JList.VERTICAL);
-        listDeroulante.setVisibleRowCount(-1);
 
-        JScrollPane listScroller = new JScrollPane(listDeroulante);
-        listScroller.setPreferredSize(new Dimension(250, 80));
+        scroll.setViewportView(listDeroulante);
 
         rb1 = new JRadioButton("Musee", false);
         rb1.setVerticalAlignment(JRadioButton.TOP);
@@ -78,14 +78,12 @@ public class fenetre extends JFrame{
         rb2 = new JRadioButton("Monuments Historique", false);
         rb2.setVerticalAlignment(JRadioButton.TOP);
 
-
         JLabel label = new JLabel(mgr.mapResources.get("gare"));
 
         panelRight.add(rb1);
         panelRight.add(rb2);
-        //panelRight.add(label);
-        panelRight.add(listDeroulante);
-        //panelRight.add(listScroller);
+        panelRight.add(scroll);
+
         //Instanciation/Set du panel gauche
 
         contLeft = new Container();
@@ -94,7 +92,6 @@ public class fenetre extends JFrame{
         Dimension dim = new Dimension(widthCarte, heightCarte);
         contLeft.setMinimumSize(dim);
         contLeft.add(imageFond);
-        //contLeft.add(label);
 
         splitPane.setLeftComponent(contLeft);
         splitPane.setRightComponent(panelRight);
@@ -111,14 +108,17 @@ public class fenetre extends JFrame{
             public void itemStateChanged(ItemEvent e) {
                 if(rb1.isSelected()){
                     System.out.println("rb1/Musée a été trigger");
-
-                    listMuseums = MonumentList.getMuseesList();
-                    for(Musee mus : listMuseums){
-                        ((DefaultListModel)listDeroulante.getModel()).addElement(mus.getNom());
+                    if(listMuseums == null){
+                        listMuseums = MonumentList.getMuseesList();
+                        for(Musee mus : listMuseums){
+                            ((DefaultListModel)listDeroulante.getModel()).addElement(mus.getNom());
+                        }
+                    }else{
+                        scroll.setVisible(true);
                     }
-
                 }else{
-                    ((DefaultListModel)listDeroulante.getModel()).removeAllElements();
+                    //((DefaultListModel)listDeroulante.getModel()).removeAllElements();
+                    scroll.setVisible(false);
                 }
             }
         });
