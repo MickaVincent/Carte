@@ -42,12 +42,11 @@ public class Main {
 			System.out.println(p2.nextField());
 		}
 */
-/*		MonumentList ml = new MonumentList(pathMusee, pathMonument);
-		List<PointInteret> m = ml.getFullList();
+		List<PointInteret> m = MonumentList.getFullList();
 		for(int i = 0; i < m.size(); i++){
 			System.out.print(m.get(i));
 			System.out.println(m.get(i).getClass());
 		}
-*/	}
+	}
 
 }

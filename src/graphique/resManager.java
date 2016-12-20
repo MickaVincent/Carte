@@ -19,7 +19,7 @@ public class resManager {
         return ourInstance;
     }
 
-    public resManager() {
+    private resManager() {
 
     }
     public void loadResources(String pathToResources){

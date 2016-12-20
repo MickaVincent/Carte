@@ -65,6 +65,7 @@ public class fenetre extends JFrame{
         Dimension dim = new Dimension(widthCarte, heightCarte);
         contLeft.setMinimumSize(dim);
         contLeft.add(imageFond);
+        //contLeft.add(label);
 
         splitPane.setLeftComponent(contLeft);
         splitPane.setRightComponent(panelRight);

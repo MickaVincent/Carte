@@ -1,5 +1,6 @@
 package csvToArray;
 
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,15 +9,23 @@ import java.util.List;
  * Created by Hamor on 19/12/2016.
  */
 public class MonumentList {
-    private List<Musee> museesList = new ArrayList<Musee>();
-    private List<MonumentHistorique> monumentHistoriqueList = new ArrayList<MonumentHistorique>();
+    private static List<Musee> museesList = new ArrayList<Musee>();
+    private static List<MonumentHistorique> monumentHistoriqueList = new ArrayList<MonumentHistorique>();
 
-    //Constructeur avec les deux chemins pour les fichiers csv
-    public MonumentList(String pathToMusee, String pathToHistorique){
-        
-        //constructeur de museesList
+    static String pathMusee;
+    static String pathMonument;
 
-        Parse pMusee = new Parse(new File(pathToMusee));
+    private static void setPath(){
+        pathMusee = "res" + File.separator + "Musee.csv";
+        pathMonument = "res" + File.separator + "MonumentsHistoriquesFrancheComte.csv";
+    }
+
+    private static MonumentList INSTANCE = new MonumentList();
+        //Constructeur de museesList
+
+    private MonumentList() {
+        setPath();
+        Parse pMusee = new Parse(new File(pathMusee));
         while(!pMusee.isFinished()) {
             String name = pMusee.nextField();
             String addresse = pMusee.nextField();
@@ -41,7 +50,7 @@ public class MonumentList {
         pMusee.close();
 
         //Meme chose avec monumentHistorique
-        Parse pHistorique = new Parse(new File(pathToHistorique));
+        Parse pHistorique = new Parse(new File(pathMonument));
         while(!pHistorique.isFinished()){
             float latitude = Float.parseFloat(pHistorique.nextField());
             float longitude = Float.parseFloat(pHistorique.nextField());
@@ -67,17 +76,17 @@ public class MonumentList {
     }
 
     //Retourne la liste des musees uniquement
-    public List<Musee> getMuseesList() {
+    public static List<Musee> getMuseesList() {
         return museesList;
     }
 
     //Retourne la liste des monument historiques uniquement
-    public List<MonumentHistorique> getMonumentHistoriqueList() {
+    public static List<MonumentHistorique> getMonumentHistoriqueList() {
         return monumentHistoriqueList;
     }
             
     //Retourne la liste complète        
-    public List<PointInteret> getFullList(){
+    public static List<PointInteret> getFullList(){
         List<PointInteret> res = new ArrayList<PointInteret>();
         res.addAll(monumentHistoriqueList);
         res.addAll(museesList);
