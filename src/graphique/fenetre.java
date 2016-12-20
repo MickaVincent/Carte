@@ -8,6 +8,8 @@ import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.image.BufferedImage;
@@ -18,25 +20,29 @@ import java.util.*;
 import static com.sun.deploy.trace.Trace.flush;
 
 public class fenetre extends JFrame{
+    private Dimension screenSize;
     private int widthCarte;
     private int heightCarte;
     private resManager mgr = resManager.getInstance();
     private Container contLeft;
     private JPanel panelRight;
+    private JButton but1;
     private JRadioButton rb1, rb2;
     private JScrollPane scroll;
     private java.util.List<Musee> listMuseums = null;
     private JList<String> listDeroulante;
     private JSplitPane splitPane;
-    //private MonumentList monumentList = new MonumentList("res"+File.separator+"Musee.csv", "res"+File.separator+"MonumentsHistoriquesFrancheComte.csv");
 
     public fenetre(){
+
         this.setResizable(false);
-        //monumentList.getFullList();
+        screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+
         createWidget();
         setWindowParameters();
         setListener();
-        //scroll.setVisible(false);
+
+        setLocation(screenSize.width/2-this.getSize().width/2, screenSize.height/2-this.getSize().height/2);
 
         setVisible(true);
         scroll.setVisible(false);
@@ -95,10 +101,12 @@ public class fenetre extends JFrame{
         rb2 = new JRadioButton("Monuments Historique", false);
         rb2.setVerticalAlignment(JRadioButton.TOP);
 
+        but1 = new JButton("Recherche Avancée");
         JLabel label = new JLabel(mgr.mapResources.get("gare"));
 
         panelRight.add(rb1);
         panelRight.add(rb2);
+        panelRight.add(but1);
         panelRight.add(scroll);
 
         //Instanciation/Set du panel gauche
@@ -136,7 +144,6 @@ public class fenetre extends JFrame{
                         scroll.setVisible(true);
                     }
                 }else{
-                    //((DefaultListModel)listDeroulante.getModel()).removeAllElements();
                     scroll.setVisible(false);
                 }
             }
@@ -153,8 +160,14 @@ public class fenetre extends JFrame{
             @Override
             public void valueChanged(ListSelectionEvent e) {
                 if(e.getValueIsAdjusting()){
-                    System.out.println(listDeroulante.getSelectedValuesList().toString());
+                    System.out.println(listDeroulante.getSelectedValuesList());
                 }
+            }
+        });
+        but1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                searchWindow wind = new searchWindow();
             }
         });
     }
