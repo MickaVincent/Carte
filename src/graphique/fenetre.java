@@ -34,8 +34,10 @@ public class fenetre extends JFrame{
         createWidget();
         setWindowParameters();
         setListener();
+        //scroll.setVisible(false);
 
         setVisible(true);
+        scroll.setVisible(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
@@ -61,9 +63,9 @@ public class fenetre extends JFrame{
         //Instanciation des widget du panel Droite
 
         scroll = new JScrollPane();
-        scroll.setPreferredSize(new Dimension(500, heightCarte-10));
+        scroll.setPreferredSize(new Dimension(530, heightCarte-10));
 
-        DefaultListModel<String> model = new DefaultListModel<>();
+        DefaultListModel<String> model = new DefaultListModel<String>();
 
         listDeroulante = new JList<>(model);
         listDeroulante.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
@@ -100,7 +102,7 @@ public class fenetre extends JFrame{
     }
 
     private void setWindowParameters(){
-        setSize(widthCarte+525, heightCarte);
+        setSize(widthCarte+540, heightCarte);
     }
     private void setListener(){
         rb1.addItemListener(new ItemListener() {
@@ -113,6 +115,7 @@ public class fenetre extends JFrame{
                         for(Musee mus : listMuseums){
                             ((DefaultListModel)listDeroulante.getModel()).addElement(mus.getNom());
                         }
+                        scroll.setVisible(true);
                     }else{
                         scroll.setVisible(true);
                     }
