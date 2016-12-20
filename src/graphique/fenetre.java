@@ -130,6 +130,7 @@ public class fenetre extends JFrame{
                         for(Musee mus : listMuseums){
                             ((DefaultListModel)listDeroulante.getModel()).addElement(mus.getNom());
                         }
+                        sortJList(listDeroulante);
                         scroll.setVisible(true);
                     }else{
                         scroll.setVisible(true);
@@ -156,5 +157,15 @@ public class fenetre extends JFrame{
                 }
             }
         });
+    }
+    public void sortJList(JList list){
+        ListModel model = list.getModel();
+        int n = model.getSize();
+        String[] data = new String[n];
+        for(int i = 0; i < n; i++){
+            data[i] = (String) model.getElementAt(i);
+        }
+        Arrays.sort(data);
+        list.setListData(data);
     }
 }
