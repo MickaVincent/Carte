@@ -34,7 +34,7 @@ public class fenetre extends JFrame{
     private JSplitPane splitPane;
 
     public fenetre(){
-
+        this.setTitle("Cartographie de la Franche-Comte");
         this.setResizable(false);
         screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
