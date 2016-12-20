@@ -5,6 +5,8 @@ import csvToArray.Musee;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
@@ -68,7 +70,20 @@ public class fenetre extends JFrame{
         DefaultListModel<String> model = new DefaultListModel<String>();
 
         listDeroulante = new JList<>(model);
-        listDeroulante.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+        listDeroulante.setSelectionModel(new DefaultListSelectionModel(){
+            @Override
+            public void setSelectionInterval(int index0, int index1)
+            {
+                if(listDeroulante.isSelectedIndex(index0))
+                {
+                    listDeroulante.removeSelectionInterval(index0, index1);
+                }
+                else
+                {
+                    listDeroulante.addSelectionInterval(index0, index1);
+                }
+            }
+        });
         listDeroulante.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
         listDeroulante.setLayoutOrientation(JList.VERTICAL);
 
@@ -130,6 +145,14 @@ public class fenetre extends JFrame{
             public void itemStateChanged(ItemEvent e) {
                 if(rb2.isSelected()){
                     System.out.println("rb2 a été trigger");
+                }
+            }
+        });
+        listDeroulante.addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if(e.getValueIsAdjusting()){
+                    System.out.println(listDeroulante.getSelectedValuesList().toString());
                 }
             }
         });
