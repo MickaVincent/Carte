@@ -21,14 +21,14 @@ public class searchWindow extends JDialog {
         screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         setLocation(screenSize.width/2-this.getSize().width/2, screenSize.height/2-this.getSize().height/2);
 
-        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        setWidgets();
+        //setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        //setWidgets();
         setVisible(true);
     }
 
     public void setWidgets() {
-        String[] tabChoix;
-        comboBox = new JComboBox(Strings);
+        //String[] tabChoix;
+        //comboBox = new JComboBox(Strings);
     }
 
 }
