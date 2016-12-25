@@ -21,8 +21,8 @@ public class MonumentList {
     }
 
     private static MonumentList INSTANCE = new MonumentList();
-        //Constructeur de museesList
 
+    //Constructeur de museesList
     private MonumentList() {
         setPath();
         Parse pMusee = new Parse(new File(pathMusee));

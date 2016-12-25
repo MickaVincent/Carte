@@ -53,12 +53,12 @@ public class fenetre extends JFrame{
 
         //Instanciation des widgets du panel Gauche
 
-        JLabel imageFond = new JLabel(new ImageIcon("res"+File.separator+"fondCarte.jpg"));
-        imageFond.setHorizontalAlignment(JLabel.LEFT);
-        widthCarte = imageFond.getIcon().getIconWidth();
-        heightCarte = imageFond.getIcon().getIconHeight();
-        imageFond.setBounds(0, 0, widthCarte, heightCarte);
-        imageFond.repaint();
+//        JLabel imageFond = new JLabel(new ImageIcon("res"+File.separator+"fondCarte.jpg"));
+//        imageFond.setHorizontalAlignment(JLabel.LEFT);
+//        widthCarte = imageFond.getIcon().getIconWidth();
+//        heightCarte = imageFond.getIcon().getIconHeight();
+//        imageFond.setBounds(0, 0, widthCarte, heightCarte);
+//        imageFond.repaint();
 
         splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
         splitPane.setEnabled(false);
@@ -71,7 +71,7 @@ public class fenetre extends JFrame{
         //Instanciation des widget du panel Droite
 
         scroll = new JScrollPane();
-        scroll.setPreferredSize(new Dimension(530, heightCarte-10));
+        scroll.setPreferredSize(new Dimension(530, 371));
 
         DefaultListModel<String> model = new DefaultListModel<String>();
 
@@ -111,21 +111,22 @@ public class fenetre extends JFrame{
 
         //Instanciation/Set du panel gauche
 
-        contLeft = new Container();
-        contLeft.setLayout(null);
+//        contLeft = new Container();
+//        contLeft.setLayout(null);
+//
+//        Dimension dim = new Dimension(widthCarte, heightCarte);
+//        contLeft.setMinimumSize(dim);
+//        contLeft.setMaximumSize(dim);
+//        contLeft.add(imageFond);
 
-        Dimension dim = new Dimension(widthCarte, heightCarte);
-        contLeft.setMinimumSize(dim);
-        contLeft.add(imageFond);
-
-        splitPane.setLeftComponent(contLeft);
+        splitPane.setLeftComponent(map.getContainer());
         splitPane.setRightComponent(panelRight);
 
         setContentPane(splitPane);
     }
 
     private void setWindowParameters(){
-        setSize(widthCarte+540, heightCarte);
+        setSize(800, 600);
     }
     private void setListener(){
         rb1.addItemListener(new ItemListener() {

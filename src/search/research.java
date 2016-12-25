@@ -67,6 +67,7 @@ public final class research {
         List<PointInteret> res = new ArrayList<PointInteret>();
 
         //For each
+        //TODO REMPLACER getClass() par instanceof
         for (PointInteret item : m
                 ) {
             if(item.getClass().equals("class cvsToArray.MonumentHistorique")) {
