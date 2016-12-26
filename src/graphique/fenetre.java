@@ -1,5 +1,6 @@
 package graphique;
 
+import csvToArray.MonumentHistorique;
 import csvToArray.MonumentList;
 import csvToArray.Musee;
 import csvToArray.PointInteret;
@@ -24,7 +25,8 @@ public class fenetre extends JFrame{
     private JButton but1, but2;
     private JRadioButton rb1, rb2;
     private JScrollPane scroll;
-    private java.util.List<Musee> listMuseums = null;
+    private java.util.List<Musee> listMuseums = MonumentList.getMuseesList();
+    private java.util.List<MonumentHistorique> listMonuments = MonumentList.getMonumentHistoriqueList();
     private JList listDeroulante;
     private JSplitPane splitPane;
     private ImagePanel panelGauche;
@@ -114,6 +116,7 @@ public class fenetre extends JFrame{
     }
 
     public void refresh(List<PointInteret> elementsSelectionnes){
+
         panelGauche.updateDisplayedElements(elementsSelectionnes);
         splitPane.setLeftComponent(panelGauche);
         setContentPane(splitPane);
@@ -128,16 +131,16 @@ public class fenetre extends JFrame{
             @Override
             public void itemStateChanged(ItemEvent e) {
                 if(rb1.isSelected()){
-                    System.out.println("rb1/Musée a été trigger");
-                    if(listMuseums == null){
-                        listMuseums = MonumentList.getMuseesList();
-                        for(Musee mus : listMuseums){
-                            ((DefaultListModel)listDeroulante.getModel()).addElement(mus);
-                        }
-                        scroll.setVisible(true);
-                    }else{
-                        scroll.setVisible(true);
+                    if(rb2.isSelected()) {
+                        rb2.setSelected(false);
+                        panelGauche.flushDisplayedElements();
+                        ((DefaultListModel)listDeroulante.getModel()).removeAllElements();
                     }
+                    System.out.println("rb1/Musée a été trigger");
+                    for(Musee mus : listMuseums){
+                        ((DefaultListModel)listDeroulante.getModel()).addElement(mus);
+                    }
+                    scroll.setVisible(true);
                 }else{
                     scroll.setVisible(false);
                 }
@@ -147,7 +150,18 @@ public class fenetre extends JFrame{
             @Override
             public void itemStateChanged(ItemEvent e) {
                 if(rb2.isSelected()){
+                    if (rb1.isSelected()){
+                        rb1.setSelected(false);
+                        panelGauche.flushDisplayedElements();
+                        ((DefaultListModel)listDeroulante.getModel()).removeAllElements();
+                    }
                     System.out.println("rb2 a été trigger");
+                    for(MonumentHistorique monHistorique : listMonuments){
+                            ((DefaultListModel)listDeroulante.getModel()).addElement(monHistorique);
+                    }
+                    scroll.setVisible(true);
+                }else{
+                    scroll.setVisible(false);
                 }
             }
         });
@@ -157,7 +171,7 @@ public class fenetre extends JFrame{
                 if(e.getValueIsAdjusting()){
                     elementsSelectionnes = listDeroulante.getSelectedValuesList();
 
-                    //System.out.println(elementsSelectionnes);
+                    System.out.println(elementsSelectionnes);
                     refresh(elementsSelectionnes);
                 }
             }
