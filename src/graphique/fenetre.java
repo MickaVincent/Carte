@@ -80,6 +80,11 @@ public class fenetre extends JFrame{
         listDeroulante.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
         listDeroulante.setLayoutOrientation(JList.VERTICAL);
 
+        resManager man = resManager.getInstance();
+        man.loadResources("res/pictogrammes");
+
+
+
         listDeroulante.setCellRenderer(new JListCustom());
         scroll.setViewportView(listDeroulante);
         //listDeroulante.set

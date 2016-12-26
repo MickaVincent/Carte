@@ -42,4 +42,8 @@ public class resManager {
             System.out.println(entry.getKey());
         }
     }
+
+    public ImageIcon getIcon(String Key){
+        return mapResources.get(Key);
+    }
 }
