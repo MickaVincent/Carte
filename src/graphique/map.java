@@ -21,6 +21,7 @@ public class map {
     private static Container cont;
 
 
+    //Constructeur initial, devra surement être changé si on passe en buffered image
     private map(){
         JLabel imageFond = new JLabel(new ImageIcon("res"+ File.separator+"fondCarte.jpg"));
         imageFond.setHorizontalAlignment(JLabel.LEFT);
@@ -42,6 +43,7 @@ public class map {
 
     private static map INSTANCE = new map();
 
+    //Getter
     public int getHeightCarte() {
         return heightCarte;
     }
@@ -58,6 +60,11 @@ public class map {
         return cont;
     }
 
+    //TODO une fonction qui permettra d'avoir la position x et la position y de l'icone
+    //TODO voir si une structure est necessaire.
+
+    //Get the new container when a list been passed in argument
+    //the returned container will contain icon of element present in myList
     public static Container getContainer(java.util.List<PointInteret> myList){
         Container c = getContainer();
         resManager mgr = resManager.getInstance();
@@ -71,11 +78,7 @@ public class map {
             System.out.println(p.getNom());
         }
         System.out.println();
-        /*
-        Mettre du bordel ici avec une liste de PointInteret
-        si c'est une instance de Musee, rajouter un icone Musee a la position
-        Sinon, rajouter une icone en fonction de la désignation de monumentHistorique
-         */
+
         c.repaint();
         return c;
     }
