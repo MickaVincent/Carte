@@ -17,7 +17,6 @@ import java.util.List;
 
 public class fenetre extends JFrame{
     private Dimension screenSize;
-    private map maMap = map.getINSTANCE();
     private resManager mgr = resManager.getInstance();
     private List<PointInteret> elementsSelectionnes = null;
     private Container contLeft;
@@ -28,19 +27,22 @@ public class fenetre extends JFrame{
     private java.util.List<Musee> listMuseums = null;
     private JList listDeroulante;
     private JSplitPane splitPane;
-
+    private ImagePanel panelGauche;
     public fenetre(){
         this.setTitle("Cartographie de la Franche-Comte");
         this.setResizable(false);
         screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        panelGauche = new ImagePanel();
+        System.out.println(panelGauche.getHeightCarte());
 
-        createWidget();
         setWindowParameters();
+        createWidget();
         setListener();
 
         setLocation(screenSize.width/2-this.getSize().width/2, screenSize.height/2-this.getSize().height/2);
 
         setVisible(true);
+
         scroll.setVisible(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
@@ -58,7 +60,7 @@ public class fenetre extends JFrame{
         //Instanciation des widget du panel Droite
 
         scroll = new JScrollPane();
-        scroll.setPreferredSize(new Dimension(530, maMap.getHeightCarte()-27));
+        scroll.setPreferredSize(new Dimension(530, panelGauche.getHeightCarte()-27));
 
         DefaultListModel<String> model = new DefaultListModel<String>();
 
@@ -81,9 +83,6 @@ public class fenetre extends JFrame{
         listDeroulante.setLayoutOrientation(JList.VERTICAL);
 
         resManager man = resManager.getInstance();
-        man.loadResources("res/pictogrammes");
-
-
 
         listDeroulante.setCellRenderer(new JListCustom());
         scroll.setViewportView(listDeroulante);
@@ -100,10 +99,15 @@ public class fenetre extends JFrame{
         panelRight.add(rb2);
         panelRight.add(but1);
         panelRight.add(scroll);
+        //this.add(new iconDrawer(mgr.getIcon("musee"), 0, 0));
+        //panelRight.paintComponents(panelRight.getGraphics());
 
         //Instanciation/Set du panel gauche
 
-        splitPane.setLeftComponent(map.getContainer());
+        //splitPane.setLeftComponent(map.getContainer());
+
+        splitPane.setLeftComponent(panelGauche);
+        //splitPane.getLeftComponent().repaint();
         splitPane.setRightComponent(panelRight);
 
         setContentPane(splitPane);
@@ -115,7 +119,8 @@ public class fenetre extends JFrame{
     }
 
     private void setWindowParameters(){
-        setSize(800, maMap.getHeightCarte()+30);
+        //setSize(800, maMap.getHeightCarte()+30);
+        setSize(800, panelGauche.getHeightCarte()+30);
     }
     private void setListener(){
         rb1.addItemListener(new ItemListener() {
@@ -150,6 +155,8 @@ public class fenetre extends JFrame{
             public void valueChanged(ListSelectionEvent e) {
                 if(e.getValueIsAdjusting()){
                     elementsSelectionnes = listDeroulante.getSelectedValuesList();
+
+                    //System.out.println(elementsSelectionnes);
                     refresh(elementsSelectionnes);
                 }
             }
@@ -158,7 +165,6 @@ public class fenetre extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 searchWindow wind = new searchWindow();
-                //System.out.println(listDeroulante.getSelectedValuesList());
             }
         });
     }

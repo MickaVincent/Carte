@@ -22,7 +22,7 @@ public class Main {
 		// TODO Auto-generated method stub
 
 		resManager mngr = resManager.getInstance();
-		mngr.loadResources("res/pictogrammes");
+		//mngr.loadResources("res/pictogrammes");
 
 		setPath();
 		System.out.println("MIKA EST MAUVAIS LOL !");
