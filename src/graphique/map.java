@@ -19,7 +19,6 @@ public class map {
     private float yMin = 46.23f;
     private float yMax = 48.183f;
     private static Container cont;
-    private resManager mgr = resManager.getInstance();
 
 
     private map(){
@@ -61,12 +60,15 @@ public class map {
 
     public static Container getContainer(java.util.List<PointInteret> myList){
         Container c = getContainer();
+        resManager mgr = resManager.getInstance();
         for (PointInteret p : myList){
-            if(myList instanceof csvToArray.Musee){
-                c.add(new JLabel(mgr.mapResources.get("musee")));
+            if(p instanceof csvToArray.Musee){
+                c.add(new JLabel(mgr.getMapResources().get("musee")));
+            }else if(p instanceof csvToArray.MonumentHistorique){
+                System.out.println(mgr.getIcon((p.getCategorie().toLowerCase())));
+                c.add(new JLabel(mgr.getIcon((p.getCategorie().toLowerCase()))));
             }
             System.out.println(p.getNom());
-
         }
         System.out.println();
         /*
@@ -74,6 +76,7 @@ public class map {
         si c'est une instance de Musee, rajouter un icone Musee a la position
         Sinon, rajouter une icone en fonction de la désignation de monumentHistorique
          */
+        c.repaint();
         return c;
     }
 }

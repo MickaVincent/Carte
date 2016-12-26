@@ -62,4 +62,8 @@ public abstract class PointInteret {
     public int getDepartement(){
         return departement;
     }
+
+    public String getCategorie(){
+        return "PointInteret";
+    }
 }

@@ -69,4 +69,8 @@ public class Musee extends PointInteret {
     public String getFacebook() {
         return facebook;
     }
+
+    public String getCategorie(){
+        return "Musee";
+    }
 }
