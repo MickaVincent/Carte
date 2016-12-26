@@ -53,7 +53,9 @@ public class ImagePanel extends JPanel {
 
         if(selectedElements != null){
             for(PointInteret interestPoint : selectedElements){
-                g.drawImage(resMgr.getIcon(interestPoint.getCategorie()), 0, 0, this);
+                BufferedImage b = resMgr.getIcon(interestPoint.getCategorie());
+                Icon.Pos p = Icon.getIcon(widthCarte, heightCarte, b, interestPoint);
+                g.drawImage(b, p.getX(), p.getY(), this);
             }
         }
 
