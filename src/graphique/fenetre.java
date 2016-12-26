@@ -104,6 +104,11 @@ public class fenetre extends JFrame{
         setContentPane(splitPane);
     }
 
+    public void refresh(List<PointInteret> elementsSelectionnes){
+        splitPane.setLeftComponent(map.getContainer(elementsSelectionnes));
+        setContentPane(splitPane);
+    }
+
     private void setWindowParameters(){
         setSize(800, maMap.getHeightCarte()+30);
     }
@@ -139,8 +144,9 @@ public class fenetre extends JFrame{
             @Override
             public void valueChanged(ListSelectionEvent e) {
                 if(e.getValueIsAdjusting()){
-                    System.out.println(listDeroulante.getSelectedValuesList());
+                    //System.out.println(listDeroulante.getSelectedValuesList());
                     elementsSelectionnes = listDeroulante.getSelectedValuesList();
+                    refresh(elementsSelectionnes);
                 }
             }
         });

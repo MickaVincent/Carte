@@ -5,6 +5,7 @@ import csvToArray.PointInteret;
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
+import java.util.*;
 
 /**
  * Created by Hamor on 25/12/2016.
@@ -56,8 +57,12 @@ public class map {
         return cont;
     }
 
-    public static Container getContainer(DefaultListModel<String> model){
+    public static Container getContainer(java.util.List<PointInteret> myList){
         Container c = getContainer();
+        for (PointInteret p : myList){
+            System.out.println(p.getNom());
+        }
+        System.out.println();
         /*
         Mettre du bordel ici avec une liste de PointInteret
         si c'est une instance de Musee, rajouter un icone Musee a la position
