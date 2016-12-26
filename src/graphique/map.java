@@ -69,12 +69,13 @@ public class map {
         Container c = getContainer();
         resManager mgr = resManager.getInstance();
         for (PointInteret p : myList){
-            if(p instanceof csvToArray.Musee){
-                c.add(new JLabel(mgr.getMapResources().get("musee")));
-            }else if(p instanceof csvToArray.MonumentHistorique){
-                System.out.println(mgr.getIcon((p.getCategorie().toLowerCase())));
-                c.add(new JLabel(mgr.getIcon((p.getCategorie().toLowerCase()))));
-            }
+//            if(p instanceof csvToArray.Musee){
+//                c.add(new JLabel(mgr.getMapResources().get("musee")));
+//            }else if(p instanceof csvToArray.MonumentHistorique){
+//                System.out.println(mgr.getIcon((p.getCategorie().toLowerCase())));
+//                c.add(new JLabel(mgr.getIcon((p.getCategorie().toLowerCase()))));
+//            }
+            c.add(new JLabel(mgr.getIcon(p.getCategorie().toLowerCase())));
             System.out.println(p.getNom());
         }
         System.out.println();
