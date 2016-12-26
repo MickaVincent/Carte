@@ -148,6 +148,8 @@ public class fenetre extends JFrame{
                     scroll.setVisible(true);
                 }else{
                     scroll.setVisible(false);
+                    panelGauche.flushDisplayedElements();
+                    ((DefaultListModel)listDeroulante.getModel()).removeAllElements();
                 }
             }
         });
@@ -167,6 +169,8 @@ public class fenetre extends JFrame{
                     scroll.setVisible(true);
                 }else{
                     scroll.setVisible(false);
+                    panelGauche.flushDisplayedElements();
+                    ((DefaultListModel)listDeroulante.getModel()).removeAllElements();
                 }
             }
         });
