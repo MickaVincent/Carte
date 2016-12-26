@@ -11,6 +11,10 @@ import java.util.Set;
  * Created by mvincent on 19/12/16.
  */
 public class resManager {
+    public Map<String, ImageIcon> getMapResources() {
+        return mapResources;
+    }
+
     private Map<String, ImageIcon> mapResources = new HashMap<String, ImageIcon>();
     private static resManager ourInstance = new resManager();
 

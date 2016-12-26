@@ -19,6 +19,8 @@ public class map {
     private float yMin = 46.23f;
     private float yMax = 48.183f;
     private static Container cont;
+    private resManager mgr = resManager.getInstance();
+
 
     private map(){
         JLabel imageFond = new JLabel(new ImageIcon("res"+ File.separator+"fondCarte.jpg"));
@@ -60,7 +62,11 @@ public class map {
     public static Container getContainer(java.util.List<PointInteret> myList){
         Container c = getContainer();
         for (PointInteret p : myList){
+            if(myList instanceof csvToArray.Musee){
+                c.add(new JLabel(mgr.mapResources.get("musee")));
+            }
             System.out.println(p.getNom());
+
         }
         System.out.println();
         /*
