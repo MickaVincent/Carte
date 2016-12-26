@@ -16,8 +16,7 @@ import java.util.*;
 
 public class fenetre extends JFrame{
     private Dimension screenSize;
-    private int widthCarte;
-    private int heightCarte;
+    private map maMap = map.getINSTANCE();
     private resManager mgr = resManager.getInstance();
     private Container contLeft;
     private JPanel panelRight;
@@ -46,15 +45,6 @@ public class fenetre extends JFrame{
 
     private void createWidget() {
 
-        //Instanciation des widgets du panel Gauche
-
-//        JLabel imageFond = new JLabel(new ImageIcon("res"+File.separator+"fondCarte.jpg"));
-//        imageFond.setHorizontalAlignment(JLabel.LEFT);
-//        widthCarte = imageFond.getIcon().getIconWidth();
-//        heightCarte = imageFond.getIcon().getIconHeight();
-//        imageFond.setBounds(0, 0, widthCarte, heightCarte);
-//        imageFond.repaint();
-
         splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
         splitPane.setEnabled(false);
 
@@ -66,7 +56,7 @@ public class fenetre extends JFrame{
         //Instanciation des widget du panel Droite
 
         scroll = new JScrollPane();
-        scroll.setPreferredSize(new Dimension(530, 371));
+        scroll.setPreferredSize(new Dimension(530, maMap.getHeightCarte()-27));
 
         DefaultListModel<String> model = new DefaultListModel<String>();
 
@@ -87,8 +77,9 @@ public class fenetre extends JFrame{
         });
         listDeroulante.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
         listDeroulante.setLayoutOrientation(JList.VERTICAL);
-        listDeroulante.setCellRenderer(new JListCustom());
         scroll.setViewportView(listDeroulante);
+        listDeroulante.setCellRenderer(new JListCustom());
+
 
         rb1 = new JRadioButton("Musee", false);
         rb1.setVerticalAlignment(JRadioButton.TOP);
@@ -106,14 +97,6 @@ public class fenetre extends JFrame{
 
         //Instanciation/Set du panel gauche
 
-//        contLeft = new Container();
-//        contLeft.setLayout(null);
-//
-//        Dimension dim = new Dimension(widthCarte, heightCarte);
-//        contLeft.setMinimumSize(dim);
-//        contLeft.setMaximumSize(dim);
-//        contLeft.add(imageFond);
-
         splitPane.setLeftComponent(map.getContainer());
         splitPane.setRightComponent(panelRight);
 
@@ -121,7 +104,7 @@ public class fenetre extends JFrame{
     }
 
     private void setWindowParameters(){
-        setSize(800, 600);
+        setSize(800, maMap.getHeightCarte()+30);
     }
     private void setListener(){
         rb1.addItemListener(new ItemListener() {
@@ -134,7 +117,6 @@ public class fenetre extends JFrame{
                         for(Musee mus : listMuseums){
                             ((DefaultListModel)listDeroulante.getModel()).addElement(mus);
                         }
-                        //sortJList(listDeroulante);
                         scroll.setVisible(true);
                     }else{
                         scroll.setVisible(true);
@@ -166,15 +148,5 @@ public class fenetre extends JFrame{
                 searchWindow wind = new searchWindow();
             }
         });
-    }
-    public void sortJList(JList list){
-        ListModel model = list.getModel();
-        int n = model.getSize();
-        String[] data = new String[n];
-        for(int i = 0; i < n; i++){
-            data[i] = (String) model.getElementAt(i);
-        }
-        Arrays.sort(data);
-        list.setListData(data);
     }
 }

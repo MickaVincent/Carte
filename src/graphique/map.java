@@ -40,6 +40,13 @@ public class map {
 
     private static map INSTANCE = new map();
 
+    public int getHeightCarte() {
+        return heightCarte;
+    }
+
+    public int getWidthCarte() {
+        return widthCarte;
+    }
 
     public static map getINSTANCE(){
         return INSTANCE;
