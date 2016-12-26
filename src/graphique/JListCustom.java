@@ -22,6 +22,14 @@ public class JListCustom extends JLabel implements ListCellRenderer<PointInteret
     public Component getListCellRendererComponent(JList<? extends PointInteret> list, PointInteret value, int index, boolean isSelected, boolean cellHasFocus) {
         String name = value.getNom();
 
+        if (isSelected) {
+            setBackground(list.getSelectionBackground());
+            setForeground(list.getSelectionForeground());
+        } else {
+            setBackground(list.getBackground());
+            setForeground(list.getForeground());
+        }
+
         setText(name);
         return this;
     }

@@ -79,10 +79,10 @@ public class fenetre extends JFrame{
         });
         listDeroulante.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
         listDeroulante.setLayoutOrientation(JList.VERTICAL);
-        scroll.setViewportView(listDeroulante);
+
         listDeroulante.setCellRenderer(new JListCustom());
-
-
+        scroll.setViewportView(listDeroulante);
+        //listDeroulante.set
         rb1 = new JRadioButton("Musee", false);
         rb1.setVerticalAlignment(JRadioButton.TOP);
 
@@ -144,7 +144,6 @@ public class fenetre extends JFrame{
             @Override
             public void valueChanged(ListSelectionEvent e) {
                 if(e.getValueIsAdjusting()){
-                    //System.out.println(listDeroulante.getSelectedValuesList());
                     elementsSelectionnes = listDeroulante.getSelectedValuesList();
                     refresh(elementsSelectionnes);
                 }
