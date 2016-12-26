@@ -23,6 +23,8 @@ public class ImagePanel extends JPanel {
     private resManager resMgr = resManager.getInstance();
     private List<PointInteret> selectedElements = null;
         public ImagePanel(){
+
+            //Recuperation des dimensions de la map
             try {
                 heightCarte = ImageIO.read(mapFichier).getHeight();
             } catch (IOException e) {
@@ -45,6 +47,10 @@ public class ImagePanel extends JPanel {
             this.setPreferredSize(dim);
             this.setMinimumSize(dim);
         }
+
+    //Fonction de dessin de l'ImagePanel
+    //Si on souhaite forcer le dessin de ce component, on appelle la focntion repaint()
+    //TODO Implementer la fonction de dessin des icones aux bones coordonnées
 
     @Override
     public void paintComponent(Graphics g){
