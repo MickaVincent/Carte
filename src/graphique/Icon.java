@@ -39,7 +39,10 @@ public final class Icon {
     }
 
     public static Pos getIcon(int width, int height, BufferedImage icone, PointInteret p){
+        //Transformation de la longitude pour qu'elle corresponde à l'echelle de la carte
         float xx = ((p.getLongitude()-xMin)/(xMax - xMin))*width - ((icone.getWidth() + 1) / 2);
+
+        //meme chose, mais l'axe étant inversé, on rajoute un 1-
         float yy = (1-((p.getLatitude()-yMin)/(yMax - yMin)))*height - ((icone.getHeight() + 1) / 2);
         return (new Pos(xx, yy));
     }
