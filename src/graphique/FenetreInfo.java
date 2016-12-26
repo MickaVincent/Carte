@@ -47,8 +47,6 @@ public class FenetreInfo extends JFrame {
 
         splittedPane.setTopComponent(scrollerTop);
 
-
-
         JPanel panelBottom = new JPanel();
 
         splittedPane.setBottomComponent(panelBottom);
