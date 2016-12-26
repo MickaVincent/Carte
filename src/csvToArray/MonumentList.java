@@ -60,6 +60,7 @@ public class MonumentList {
             int insee = Integer.parseInt(pHistorique.nextField());
             String categorie = pHistorique.nextField();
             String designation = pHistorique.nextField();
+            //designation = designation.substring(0, 1).toUpperCase()+designation.substring(1).toLowerCase();
             String proprietaire = pHistorique.nextField();
             String description = pHistorique.nextField();
             String protection = pHistorique.nextField();

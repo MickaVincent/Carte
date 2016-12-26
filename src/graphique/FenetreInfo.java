@@ -14,7 +14,7 @@ public class FenetreInfo extends JFrame {
     private JScrollPane scrollerTop;
     private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
-    public FenetreInfo(){
+    public FenetreInfo(JList listDeroulante){
         setWindow();
         setPanes();
     }

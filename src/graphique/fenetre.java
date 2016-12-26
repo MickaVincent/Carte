@@ -190,7 +190,7 @@ public class fenetre extends JFrame{
         but2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                FenetreInfo fenInfo= new FenetreInfo();
+                FenetreInfo fenInfo = new FenetreInfo(listDeroulante);
             }
         });
     }
