@@ -71,6 +71,6 @@ public class Musee extends PointInteret {
     }
 
     public String getCategorie(){
-        return "Musee";
+        return "musee";
     }
 }

@@ -75,7 +75,7 @@ public class map {
 //                System.out.println(mgr.getIcon((p.getCategorie().toLowerCase())));
 //                c.add(new JLabel(mgr.getIcon((p.getCategorie().toLowerCase()))));
 //            }
-            c.add(new JLabel(mgr.getIcon(p.getCategorie().toLowerCase())));
+            c.add(new JLabel(mgr.getIcon(p.getCategorie())));
             System.out.println(p.getNom());
         }
         System.out.println();
