@@ -7,6 +7,7 @@ import graphique.fenetre;
 import graphique.resManager;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 public class Main {
@@ -22,7 +23,11 @@ public class Main {
 		// TODO Auto-generated method stub
 
 		resManager mngr = resManager.getInstance();
-		//mngr.loadResources("res/pictogrammes");
+		try {
+			mngr.loadResources("res" + File.separator+"pictogrammes");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
 		setPath();
 		System.out.println("MIKA EST MAUVAIS LOL !");

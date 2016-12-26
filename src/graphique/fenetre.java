@@ -114,7 +114,8 @@ public class fenetre extends JFrame{
     }
 
     public void refresh(List<PointInteret> elementsSelectionnes){
-        splitPane.setLeftComponent(map.getContainer(elementsSelectionnes));
+        panelGauche.updateDisplayedElements(elementsSelectionnes);
+        splitPane.setLeftComponent(panelGauche);
         setContentPane(splitPane);
     }
 
