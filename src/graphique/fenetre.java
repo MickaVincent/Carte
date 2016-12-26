@@ -13,14 +13,16 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.*;
+import java.util.List;
 
 public class fenetre extends JFrame{
     private Dimension screenSize;
     private map maMap = map.getINSTANCE();
     private resManager mgr = resManager.getInstance();
+    private List<PointInteret> elementsSelectionnes = null;
     private Container contLeft;
     private JPanel panelRight;
-    private JButton but1;
+    private JButton but1, but2;
     private JRadioButton rb1, rb2;
     private JScrollPane scroll;
     private java.util.List<Musee> listMuseums = null;
@@ -88,8 +90,7 @@ public class fenetre extends JFrame{
         rb2.setVerticalAlignment(JRadioButton.TOP);
 
         but1 = new JButton("Recherche Avancée");
-        JLabel label = new JLabel(mgr.mapResources.get("gare"));
-
+        //but2 = new JButton("Update");
         panelRight.add(rb1);
         panelRight.add(rb2);
         panelRight.add(but1);
@@ -139,6 +140,7 @@ public class fenetre extends JFrame{
             public void valueChanged(ListSelectionEvent e) {
                 if(e.getValueIsAdjusting()){
                     System.out.println(listDeroulante.getSelectedValuesList());
+                    elementsSelectionnes = listDeroulante.getSelectedValuesList();
                 }
             }
         });
@@ -146,6 +148,7 @@ public class fenetre extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 searchWindow wind = new searchWindow();
+                //System.out.println(listDeroulante.getSelectedValuesList());
             }
         });
     }
