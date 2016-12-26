@@ -40,7 +40,7 @@ public final class Icon {
 
     public static Pos getIcon(int width, int height, BufferedImage icone, PointInteret p){
         float xx = ((p.getLongitude()-xMin)/(xMax - xMin))*width - ((icone.getWidth() + 1) / 2);
-        float yy = ((p.getLatitude()-yMin)/(yMax - yMin))*height - ((icone.getHeight() + 1) / 2);
+        float yy = (1-((p.getLatitude()-yMin)/(yMax - yMin)))*height - ((icone.getHeight() + 1) / 2);
         return (new Pos(xx, yy));
     }
 }
