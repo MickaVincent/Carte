@@ -6,6 +6,8 @@ import javafx.stage.Screen;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.*;
 
 /**
@@ -17,6 +19,7 @@ public class searchWindow extends JDialog {
     private BoxLayout layout = new BoxLayout(this, 0);
     private JButton b1, b2;
     private JLabel lbl1;
+    private String choice1, choice2, choice3;
     private JComboBox<String> comboBox;
     public searchWindow(){
         setSize(350, 250);
@@ -27,31 +30,25 @@ public class searchWindow extends JDialog {
         screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         setLocation(screenSize.width/2-this.getSize().width/2, screenSize.height/2-this.getSize().height/2);
 
+        setWidgets();
+        setListeners();
+        setVisible(true);
+    }
+
+    public void setWidgets() {
         lbl1 = new JLabel("Type de structure recherché :");
         comboBox = new JComboBox(tabMonuments);
         this.add(lbl1);
         this.add(comboBox);
-        /*DefaultListModel<String> model = new DefaultListModel<String>();
-
-        java.util.List<Musee> maListe = MonumentList.getMuseesList();
-        JList jlist = new JList<>(model);
-        JScrollPane pane = new JScrollPane();
-        for(Musee mus : maListe){
-            ((DefaultListModel)jlist.getModel()).addElement(mus);
-        }
-
-        //list.add()
-        jlist.setCellRenderer(new JListCustom());
-        pane.setViewportView(jlist);
-        this.add(pane);
-        //setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        //setWidgets();
-        */setVisible(true);
     }
-
-    public void setWidgets() {
-        //String[] tabChoix;
-        //comboBox = new JComboBox(Strings);
+    public void setListeners(){
+        comboBox.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                choice1 = (String) comboBox.getSelectedItem();
+                System.out.println("Choice Changed : " + choice1);
+                //if(choice1.equals())
+            }
+        });
     }
-
 }

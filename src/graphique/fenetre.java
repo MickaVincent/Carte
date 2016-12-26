@@ -96,10 +96,15 @@ public class fenetre extends JFrame{
         rb2.setVerticalAlignment(JRadioButton.TOP);
 
         but1 = new JButton("Recherche Avancée");
-        //but2 = new JButton("Update");
+        but2 = new JButton("Plus d'informations");
+        Dimension dim = but1.getPreferredSize();
+        but1.setPreferredSize(new Dimension(150, (int) dim.getHeight()));
+        but2.setPreferredSize(new Dimension(164, (int)dim.getHeight()));
+
         panelRight.add(rb1);
         panelRight.add(rb2);
         panelRight.add(but1);
+        panelRight.add(but2);
         panelRight.add(scroll);
         //this.add(new iconDrawer(mgr.getIcon("musee"), 0, 0));
         //panelRight.paintComponents(panelRight.getGraphics());
@@ -124,7 +129,7 @@ public class fenetre extends JFrame{
 
     private void setWindowParameters(){
         //setSize(800, maMap.getHeightCarte()+30);
-        setSize(800, panelGauche.getHeightCarte()+30);
+        setSize(930, panelGauche.getHeightCarte()+30);
     }
     private void setListener(){
         rb1.addItemListener(new ItemListener() {
@@ -180,6 +185,12 @@ public class fenetre extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 searchWindow wind = new searchWindow();
+            }
+        });
+        but2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                FenetreInfo fenInfo= new FenetreInfo();
             }
         });
     }
