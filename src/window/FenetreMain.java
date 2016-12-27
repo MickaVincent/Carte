@@ -141,8 +141,6 @@ public class FenetreMain extends JFrame{
                 if(rb1.isSelected()){
                     if(rb2.isSelected()) {
                         rb2.setSelected(false);
-                        panelGauche.flushDisplayedElements();
-                        ((DefaultListModel)listDeroulante.getModel()).removeAllElements();
                     }
                     System.out.println("rb1/Musée a été trigger");
                     for(Musee mus : listMuseums){
@@ -162,8 +160,6 @@ public class FenetreMain extends JFrame{
                 if(rb2.isSelected()){
                     if (rb1.isSelected()){
                         rb1.setSelected(false);
-                        panelGauche.flushDisplayedElements();
-                        ((DefaultListModel)listDeroulante.getModel()).removeAllElements();
                     }
                     System.out.println("rb2 a été trigger");
                     for(MonumentHistorique monHistorique : listMonuments){
@@ -182,8 +178,8 @@ public class FenetreMain extends JFrame{
             public void valueChanged(ListSelectionEvent e) {
                 if(e.getValueIsAdjusting()){
                     elementsSelectionnes = listDeroulante.getSelectedValuesList();
-
-                    System.out.println(elementsSelectionnes);
+                    System.out.println("Taille de la liste ? : " + listDeroulante.getSelectedValuesList().size());
+                    System.out.println("New elements selectionnés : " + elementsSelectionnes);
                     refresh(elementsSelectionnes);
                 }
             }
