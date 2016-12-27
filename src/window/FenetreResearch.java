@@ -2,6 +2,7 @@ package window;
 
 import csvToArray.MonumentList;
 import csvToArray.Musee;
+import graphique.JListCustom;
 import javafx.stage.Screen;
 
 import javax.swing.*;
@@ -25,10 +26,11 @@ public class FenetreResearch extends JDialog {
     private JList listResearch;
     private String choice1, choice2;
     private JComboBox<String> comboBox, comboBoxCriteres;
+    private JScrollPane scroll;
     public FenetreResearch(){
         listChoix = new String[2];
-        setSize(350, 250);
-        GridLayout lyt = new GridLayout(7, 1);
+        setSize(350, 350);
+        GridBagLayout lyt = new GridBagLayout();
 
         this.setLayout(lyt);
         setModal(true);
@@ -45,33 +47,55 @@ public class FenetreResearch extends JDialog {
     }
 
     public void setWidgets() {
+
+        GridBagConstraints c = new GridBagConstraints();
+        c.gridx = 0;
+        c.gridy = 0;
+        c.fill = GridBagConstraints.HORIZONTAL;
+
         lbl1 = new JLabel("Type de structure recherché :");
+        this.add(lbl1, c);
+
+        c.gridx = 1;
+        c.gridy = 0;
+
         comboBox = new JComboBox(tabMonuments);
         comboBox.setSelectedItem("Musee");
+        this.add(comboBox, c);
 
-        this.add(lbl1);
-        this.add(comboBox);
-
+        c.gridx = 0;
+        c.gridy = 1;
         lbl2 = new JLabel("Critères de recherche : ");
+        this.add(lbl2, c);
 
         comboBoxCriteres = new JComboBox<>();
         comboBoxCriteres.addItem("Adresse");
         comboBoxCriteres.setSelectedIndex(0);
 
 
-        this.add(lbl2);
-        this.add(comboBoxCriteres);
+
+        this.add(comboBoxCriteres, c);
 
         lbl3 = new JLabel("Mot Clé à utiliser : ");
         fieldRecherche = new JTextField("Entrer mot clé");
 
-        this.add(lbl3);
-        this.add(fieldRecherche);
+        this.add(lbl3, c);
+        this.add(fieldRecherche, c);
+
+
+        listResearch = new JList();
+        listResearch.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
+        listResearch.setLayoutOrientation(JList.VERTICAL);
+
+        scroll = new JScrollPane();
+        listResearch.setCellRenderer(new JListCustom());
+        scroll.setViewportView(listResearch);
+
+        this.add(scroll, c);
 
         b1 = new JButton("Demarrer la Recherche");
-        this.add(b1);
-        //listResearch = new JList();
-        //this.add(listResearch);
+        this.add(b1, c);
+
     }
     public void setListeners(){
         comboBox.addActionListener(new ActionListener() {
