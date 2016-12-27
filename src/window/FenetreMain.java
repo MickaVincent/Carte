@@ -142,15 +142,15 @@ public class FenetreMain extends JFrame{
                     if(rb2.isSelected()) {
                         rb2.setSelected(false);
                     }
+                    panelGauche.flushDisplayedElements();
+                    ((DefaultListModel)listDeroulante.getModel()).removeAllElements();
                     System.out.println("rb1/Musée a été trigger");
                     for(Musee mus : listMuseums){
                         ((DefaultListModel)listDeroulante.getModel()).addElement(mus);
                     }
                     scroll.setVisible(true);
                 }else{
-                    scroll.setVisible(false);
-                    panelGauche.flushDisplayedElements();
-                    ((DefaultListModel)listDeroulante.getModel()).removeAllElements();
+                scroll.setVisible(false);
                 }
             }
         });
@@ -161,6 +161,8 @@ public class FenetreMain extends JFrame{
                     if (rb1.isSelected()){
                         rb1.setSelected(false);
                     }
+                    panelGauche.flushDisplayedElements();
+                    ((DefaultListModel)listDeroulante.getModel()).removeAllElements();
                     System.out.println("rb2 a été trigger");
                     for(MonumentHistorique monHistorique : listMonuments){
                             ((DefaultListModel)listDeroulante.getModel()).addElement(monHistorique);
@@ -168,8 +170,6 @@ public class FenetreMain extends JFrame{
                     scroll.setVisible(true);
                 }else{
                     scroll.setVisible(false);
-                    panelGauche.flushDisplayedElements();
-                    ((DefaultListModel)listDeroulante.getModel()).removeAllElements();
                 }
             }
         });
@@ -187,7 +187,19 @@ public class FenetreMain extends JFrame{
         but1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                panelGauche.flushDisplayedElements();
+                ((DefaultListModel)listDeroulante.getModel()).removeAllElements();
+
                 FenetreResearch wind = new FenetreResearch();
+                String[] choix = wind.showDialog();
+                System.out.println("[" + choix[0] + "," + choix[1] + "]");
+                if(rb1.isSelected()) rb1.setSelected(false);
+                if(rb2.isSelected()) rb2.setSelected(false);
+                System.out.println("Recherche Avancé a été trigger");
+                //for(MonumentHistorique monHistorique : listMonuments){
+                    //((DefaultListModel)listDeroulante.getModel()).addElement(monHistorique);
+                //}
+                scroll.setVisible(true);
             }
         });
         but2.addActionListener(new ActionListener() {

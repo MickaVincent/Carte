@@ -64,7 +64,6 @@ public class ImagePanel extends JPanel {
                 g.drawImage(b, p.getX(), p.getY(), this);
             }
         }
-
     }
 
     public void  updateDisplayedElements(java.util.List<PointInteret> myList){
