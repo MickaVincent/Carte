@@ -20,13 +20,17 @@ public class FenetreResearch extends JDialog {
     private Dimension screenSize;
     private BoxLayout layout = new BoxLayout(this, 0);
     private JButton b1, b2;
-    private JLabel lbl1, lbl2;
+    private JLabel lbl1, lbl2, lbl3;
+    private JTextField fieldRecherche;
+    private JList listResearch;
     private String choice1, choice2;
     private JComboBox<String> comboBox, comboBoxCriteres;
     public FenetreResearch(){
         listChoix = new String[2];
         setSize(350, 250);
-        this.setLayout(new FlowLayout());
+        GridLayout lyt = new GridLayout(7, 1);
+
+        this.setLayout(lyt);
         setModal(true);
         setResizable(false);
         setTitle("Recherche Avancée");
@@ -57,8 +61,17 @@ public class FenetreResearch extends JDialog {
 
         this.add(lbl2);
         this.add(comboBoxCriteres);
+
+        lbl3 = new JLabel("Mot Clé à utiliser : ");
+        fieldRecherche = new JTextField("Entrer mot clé");
+
+        this.add(lbl3);
+        this.add(fieldRecherche);
+
         b1 = new JButton("Demarrer la Recherche");
         this.add(b1);
+        //listResearch = new JList();
+        //this.add(listResearch);
     }
     public void setListeners(){
         comboBox.addActionListener(new ActionListener() {
