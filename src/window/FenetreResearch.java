@@ -27,12 +27,13 @@ public class FenetreResearch extends JDialog {
     private String choice1, choice2;
     private JComboBox<String> comboBox, comboBoxCriteres;
     private JScrollPane scroll;
+    private GridBagLayout lyt;
     public FenetreResearch(){
         listChoix = new String[2];
-        setSize(350, 350);
-        GridBagLayout lyt = new GridBagLayout();
+        setSize(350, 250);
+        lyt = new GridBagLayout();
 
-        this.setLayout(lyt);
+        setLayout(lyt);
         setModal(true);
         setResizable(false);
         setTitle("Recherche Avancée");
@@ -41,7 +42,7 @@ public class FenetreResearch extends JDialog {
 
         setWidgets();
         setListeners();
-
+        this.setLayout(lyt);
         choice1 = "Musee";
         choice2 = "Adresse";
     }
@@ -49,9 +50,13 @@ public class FenetreResearch extends JDialog {
     public void setWidgets() {
 
         GridBagConstraints c = new GridBagConstraints();
+
         c.gridx = 0;
         c.gridy = 0;
-        c.fill = GridBagConstraints.HORIZONTAL;
+        c.fill = GridBagConstraints.BOTH;
+        c.anchor = GridBagConstraints.FIRST_LINE_START;
+
+        //lyt.setConstraints(this, c);
 
         lbl1 = new JLabel("Type de structure recherché :");
         this.add(lbl1, c);
@@ -72,14 +77,21 @@ public class FenetreResearch extends JDialog {
         comboBoxCriteres.addItem("Adresse");
         comboBoxCriteres.setSelectedIndex(0);
 
-
+        c.gridx = 1;
+        c.gridy = 1;
 
         this.add(comboBoxCriteres, c);
 
         lbl3 = new JLabel("Mot Clé à utiliser : ");
         fieldRecherche = new JTextField("Entrer mot clé");
 
+        c.gridx = 0;
+        c.gridy = 2;
+
         this.add(lbl3, c);
+
+        c.gridx = 1;
+        c.gridy = 2;
         this.add(fieldRecherche, c);
 
 
@@ -91,9 +103,25 @@ public class FenetreResearch extends JDialog {
         listResearch.setCellRenderer(new JListCustom());
         scroll.setViewportView(listResearch);
 
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.ipady = 95;
+        c.weightx = 0.0;
+        c.gridwidth = 3;
+        c.gridheight = 3;
+        c.gridx = 0;
+        c.gridy = 3;
+
         this.add(scroll, c);
 
-        b1 = new JButton("Demarrer la Recherche");
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.ipady = 0;       //reset to default
+        c.weighty = 3.0;   //request any extra vertical space
+        //c.anchor = GridBagConstraints.PAGE_END; //bottom of space
+        c.insets = new Insets(0,30,0,30);  //top padding
+        c.gridx = 0;
+        c.gridy = 6;
+
+        b1 = new JButton("Afficher les résultats");
         this.add(b1, c);
 
     }
