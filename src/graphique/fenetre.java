@@ -194,7 +194,11 @@ public class fenetre extends JFrame{
         but2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                FenetreInfo fenInfo = new FenetreInfo(listDeroulante);
+                if ((listDeroulante.getSelectedValuesList().size())==0){
+                    FenetreError fenError = new FenetreError();
+                }else{
+                    FenetreInfo fenInfo = new FenetreInfo(listDeroulante.getSelectedValuesList());
+                }
             }
         });
     }
