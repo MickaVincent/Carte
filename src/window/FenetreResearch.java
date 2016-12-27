@@ -1,23 +1,27 @@
 package window;
 
+import csvToArray.MonumentHistorique;
 import csvToArray.MonumentList;
 import csvToArray.Musee;
+import csvToArray.PointInteret;
 import graphique.JListCustom;
-import javafx.stage.Screen;
+import search.research;
 
 import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by mvincent on 20/12/16.
  */
 public class FenetreResearch extends JDialog {
+
     private String[] tabMonuments = {"Musee", "Monument Historique", "Les deux"};
-    private String[] listChoix = null;
     private Dimension screenSize;
     private BoxLayout layout = new BoxLayout(this, 0);
     private JButton b1, b2;
@@ -28,8 +32,18 @@ public class FenetreResearch extends JDialog {
     private JComboBox<String> comboBox, comboBoxCriteres;
     private JScrollPane scroll;
     private GridBagLayout lyt;
+    private List<PointInteret> listComplete;
+    private List<Musee> listMusee;
+    private List<MonumentHistorique> listMonumentsHisto;
+    private List<PointInteret> selectedElements;
+    private List<Musee> newListM;
+    private List<MonumentHistorique> newListH;
+    private List<PointInteret> newListB;
+
+    //TODO PARSER LA MAP ELEMENT PAR ELEMENT ET RANGER DANS LE TRUC DE RENVOIS
     public FenetreResearch(){
-        listChoix = new String[2];
+
+        setLists();
         setSize(350, 250);
         lyt = new GridBagLayout();
 
@@ -45,6 +59,16 @@ public class FenetreResearch extends JDialog {
         this.setLayout(lyt);
         choice1 = "Musee";
         choice2 = "Adresse";
+    }
+
+    private void setLists() {
+        listComplete = MonumentList.getFullList();
+        System.out.println(" l l l " +listComplete);
+        listMonumentsHisto = MonumentList.getMonumentHistoriqueList();
+        System.out.println(listMonumentsHisto);
+        listMusee = MonumentList.getMuseesList();
+        System.out.println(listMusee);
+        selectedElements = new ArrayList<>();
     }
 
     public void setWidgets() {
@@ -94,10 +118,25 @@ public class FenetreResearch extends JDialog {
         c.gridy = 2;
         this.add(fieldRecherche, c);
 
-
-        listResearch = new JList();
+        DefaultListModel<String> model = new DefaultListModel<String>();
+        listResearch = new JList<>(model);
+        listResearch.setSelectionModel(new DefaultListSelectionModel(){
+            @Override
+            public void setSelectionInterval(int index0, int index1)
+            {
+                if(listResearch.isSelectedIndex(index0))
+                {
+                    listResearch.removeSelectionInterval(index0, index1);
+                }
+                else
+                {
+                    listResearch.addSelectionInterval(index0, index1);
+                }
+            }
+        });
         listResearch.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
         listResearch.setLayoutOrientation(JList.VERTICAL);
+
 
         scroll = new JScrollPane();
         listResearch.setCellRenderer(new JListCustom());
@@ -113,10 +152,13 @@ public class FenetreResearch extends JDialog {
 
         this.add(scroll, c);
 
+        for(PointInteret pt : listComplete){
+            ((DefaultListModel)listResearch.getModel()).addElement(pt);
+        }
+
         c.fill = GridBagConstraints.HORIZONTAL;
         c.ipady = 0;       //reset to default
-        c.weighty = 3.0;   //request any extra vertical space
-        //c.anchor = GridBagConstraints.PAGE_END; //bottom of space
+
         c.insets = new Insets(0,30,0,30);  //top padding
         c.gridx = 0;
         c.gridy = 6;
@@ -164,15 +206,83 @@ public class FenetreResearch extends JDialog {
         b1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
-                listChoix[0] = choice1;
-                listChoix[1] = choice2;
                 dispose();
             }
         });
+
+        fieldRecherche.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                ((DefaultListModel)listResearch.getModel()).removeAllElements();
+                selectedElements.removeAll(selectedElements);
+                listResearch.setVisible(true);
+                checkSelection(fieldRecherche.getText());
+                for(PointInteret pt : selectedElements){
+                    ((DefaultListModel) listResearch.getModel()).addElement(pt);
+                }
+                listResearch.setVisible(true);
+
+            }
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                ((DefaultListModel)listResearch.getModel()).removeAllElements();
+                selectedElements.removeAll(selectedElements);
+                listResearch.setVisible(true);
+                checkSelection(fieldRecherche.getText());
+                for(PointInteret pt : selectedElements){
+                    ((DefaultListModel) listResearch.getModel()).addElement(pt);
+                }
+                listResearch.setVisible(true);
+
+            }
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+            }
+        });
     }
-    public String[] showDialog() {
+    public List<PointInteret> showDialog() {
         setVisible(true);
-        return listChoix;
+        return selectedElements;
+    }
+    public void checkSelection(String recherche){
+        if(choice1.equals("Musee")){
+            newListM = research.getWithAdresse(recherche, listMusee);
+            for(Musee mus : newListM){
+                selectedElements.add(mus);
+            }
+        }else{
+            if(choice1.equals("MonumentHistorique")){
+                if(choice2.equals("Reference")){
+                    newListH = research.getWithReference(recherche, listMonumentsHisto);
+                }
+                if(choice2.equals("Designation")){
+                    newListH = research.getWithDesignation(recherche, listMonumentsHisto);
+                }
+                if(choice2.equals("Categorie")){
+                    newListH = research.getWithCategorie(recherche, listMonumentsHisto);
+                }
+                for(MonumentHistorique mh : newListH){
+                    selectedElements.add(mh);
+                }
+            }else{
+                if(choice1.equals("Les deux")){
+                    if(choice2.equals("Nom")){
+                        newListB = research.getWithName(recherche, listComplete);
+                    }
+                    if(choice2.equals("Commune")){
+                        newListB = research.getWithCommune(recherche, listComplete);
+                    }
+                    if(choice2.equals("Numéro INSEE")){
+                        newListB = research.getWithInsee(Integer.parseInt(recherche), listComplete);
+                    }
+                    if(choice2.equals("Code Postal")){
+                        newListB = research.getWithCP(Integer.parseInt(recherche), listComplete);
+                    }
+                    for(PointInteret pt : newListB){
+                        selectedElements.add(pt);
+                    }
+                }
+            }
+        }
     }
 }
