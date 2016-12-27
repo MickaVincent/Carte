@@ -70,11 +70,11 @@ public final class research {
         //TODO REMPLACER getClass() par instanceof
         for (PointInteret item : m
                 ) {
-            if(item.getClass().equals("class cvsToArray.MonumentHistorique")) {
+            if(item instanceof MonumentHistorique) {
                 if (item.getDepartement() == cp || item.getDepartement() == cp/1000) {
                     res.add(item);
                 }
-            }else if(item.getClass().equals("lass cvsToArray.Musee")){
+            }else if(item instanceof Musee){
                 if (item.getDepartement() == cp || item.getDepartement()/1000 == cp) {
                     res.add(item);
                 }
