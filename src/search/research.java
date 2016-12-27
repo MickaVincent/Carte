@@ -50,7 +50,7 @@ public final class research {
     }
 
     //Renvoie une liste suivant si "numInsee" est dans un point d'interet
-    public static List<PointInteret> getWithCommune(int numInsee, List<PointInteret> m){
+    public static List<PointInteret> getWithInsee(int numInsee, List<PointInteret> m){
         List<PointInteret> res = new ArrayList<PointInteret>();
 
         //For each

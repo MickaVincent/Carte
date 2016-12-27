@@ -124,7 +124,6 @@ public class FenetreMain extends JFrame{
     }
 
     public void refresh(List<PointInteret> elementsSelectionnes){
-
         panelGauche.updateDisplayedElements(elementsSelectionnes);
         splitPane.setLeftComponent(panelGauche);
         setContentPane(splitPane);
@@ -177,8 +176,11 @@ public class FenetreMain extends JFrame{
             @Override
             public void valueChanged(ListSelectionEvent e) {
                 if(e.getValueIsAdjusting()){
+                    System.out.println("First index : " + e.getFirstIndex() + " Second index : " + e.getLastIndex());
+
                     elementsSelectionnes = listDeroulante.getSelectedValuesList();
                     System.out.println("Taille de la liste ? : " + listDeroulante.getSelectedValuesList().size());
+                    //System.out.println(listDeroulante);
                     System.out.println("New elements selectionnés : " + elementsSelectionnes);
                     refresh(elementsSelectionnes);
                 }
