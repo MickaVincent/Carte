@@ -32,6 +32,7 @@ public class FenetreMain extends JFrame{
     private JList listDeroulante;
     private JSplitPane splitPane;
     private ImagePanel panelGauche;
+
     public FenetreMain(){
         this.setTitle("Cartographie de la Franche-Comte");
         this.setResizable(false);

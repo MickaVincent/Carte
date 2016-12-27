@@ -5,6 +5,8 @@ import graphique.JListCustom;
 import javafx.scene.control.SplitPane;
 
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.util.*;
 
@@ -16,15 +18,36 @@ public class FenetreInfo extends JFrame {
     private JList listTop;
     private JScrollPane scrollerTop;
     private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+    private PointInteret p;
 
     public FenetreInfo(java.util.List l){
         setWindow();
         //DefaultListModel<String> model = new DefaultListModel<String>(jl);
         DefaultListModel<String> model = new DefaultListModel<String>();
         listTop = new JList<>(model);
+        listTop.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        //listTop.setCellRenderer(new JListCustom());
         for(Object p : l)
             ((DefaultListModel)listTop.getModel()).addElement(p);
+        setListener();
         setPanes();
+    }
+
+
+    //Setter
+    //TODO faire une classe listener ?
+    private void setListener(){
+        listTop.addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+
+                //Correspond a un PointInteret se faisant selectionné
+                if(e.getValueIsAdjusting()){
+                    p = (PointInteret) listTop.getSelectedValue();
+                    //refresh(elementsSelectionnes);
+                }
+            }
+        });
     }
 
     public void setWindow() {
