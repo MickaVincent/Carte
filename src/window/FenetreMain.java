@@ -1,9 +1,12 @@
-package graphique;
+package window;
 
 import csvToArray.MonumentHistorique;
 import csvToArray.MonumentList;
 import csvToArray.Musee;
 import csvToArray.PointInteret;
+import graphique.ImagePanel;
+import graphique.JListCustom;
+import graphique.resManager;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
@@ -13,10 +16,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.util.*;
 import java.util.List;
 
-public class fenetre extends JFrame{
+public class FenetreMain extends JFrame{
     private Dimension screenSize;
     private resManager mgr = resManager.getInstance();
     private List<PointInteret> elementsSelectionnes = null;
@@ -30,7 +32,7 @@ public class fenetre extends JFrame{
     private JList listDeroulante;
     private JSplitPane splitPane;
     private ImagePanel panelGauche;
-    public fenetre(){
+    public FenetreMain(){
         this.setTitle("Cartographie de la Franche-Comte");
         this.setResizable(false);
         screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -188,7 +190,7 @@ public class fenetre extends JFrame{
         but1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                searchWindow wind = new searchWindow();
+                FenetreResearch wind = new FenetreResearch();
             }
         });
         but2.addActionListener(new ActionListener() {

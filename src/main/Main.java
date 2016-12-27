@@ -2,8 +2,7 @@ package main;
 
 import csvToArray.MonumentList;
 import csvToArray.Musee;
-import csvToArray.PointInteret;
-import graphique.fenetre;
+import window.FenetreMain;
 import graphique.resManager;
 
 import java.io.File;
@@ -33,7 +32,7 @@ public class Main {
 		System.out.println("MIKA EST MAUVAIS LOL !");
 		System.out.println("OUAIS TG GROS CON!");
 
-		fenetre window = new fenetre();
+		FenetreMain window = new FenetreMain();
 
 		System.out.println("Parsing resource map");
 		mngr.parseMap();

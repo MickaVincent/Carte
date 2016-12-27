@@ -1,6 +1,7 @@
-package graphique;
+package window;
 
 import csvToArray.PointInteret;
+import graphique.JListCustom;
 import javafx.scene.control.SplitPane;
 
 import javax.swing.*;

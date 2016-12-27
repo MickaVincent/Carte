@@ -1,4 +1,4 @@
-package graphique;
+package window;
 
 import csvToArray.MonumentList;
 import csvToArray.Musee;
@@ -13,7 +13,7 @@ import java.util.*;
 /**
  * Created by mvincent on 20/12/16.
  */
-public class searchWindow extends JDialog {
+public class FenetreResearch extends JDialog {
     private String[] tabMonuments = {"Musee", "Monument Historique", "Les deux"};
     private Dimension screenSize;
     private BoxLayout layout = new BoxLayout(this, 0);
@@ -21,7 +21,7 @@ public class searchWindow extends JDialog {
     private JLabel lbl1;
     private String choice1, choice2, choice3;
     private JComboBox<String> comboBox;
-    public searchWindow(){
+    public FenetreResearch(){
         setSize(350, 250);
         this.setLayout(new FlowLayout());
         setModal(true);
