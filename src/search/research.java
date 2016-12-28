@@ -25,7 +25,7 @@ public final class research {
         for (PointInteret item : m
                 ) {
             //met le nom d'item sans accents et en minuscule + regarde si name est dedans
-            if(item.getNom().replaceAll("\\p{M}", "").toLowerCase().contains(name)) {
+            if((Normalizer.normalize(item.getNom(), Normalizer.Form.NFD).toLowerCase()).contains(name)) {
                 res.add(item);
             }
         }
@@ -42,7 +42,7 @@ public final class research {
         for (PointInteret item : m
                 ) {
             //met le nom d'item sans accents et en minuscule + regarde si name est dedans
-            if(item.getCommune().replaceAll("\\p{M}", "").toLowerCase().contains(commune)) {
+            if((Normalizer.normalize(item.getCommune(), Normalizer.Form.NFD).toLowerCase()).contains(commune)) {
                 res.add(item);
             }
         }
@@ -93,7 +93,7 @@ public final class research {
         for (MonumentHistorique item : m
                 ) {
             //met le nom d'item sans accents et en minuscule + regarde si categorie est dedans
-            if(item.getCategorie().replaceAll("\\p{M}", "").toLowerCase().contains(categorie)) {
+            if((Normalizer.normalize(item.getCategorie(), Normalizer.Form.NFD).toLowerCase()).contains(categorie)) {
                 res.add(item);
             }
         }
@@ -110,7 +110,7 @@ public final class research {
         for (MonumentHistorique item : m
                 ) {
             //met le nom d'item sans accents et en minuscule + regarde si designation est dedans
-            if(item.getCategorie().replaceAll("\\p{M}", "").toLowerCase().contains(designation)) {
+            if((Normalizer.normalize(item.getDescription(), Normalizer.Form.NFD).toLowerCase()).contains(designation)) {
                 res.add(item);
             }
         }
@@ -141,10 +141,11 @@ public final class research {
         for (Musee item : m
                 ) {
             //met le nom d'item sans accents et en minuscule + regarde si adresse est dedans
-            if(item.getAdresse().replaceAll("\\p{M}", "").toLowerCase().contains(adresse)) {
+            if((Normalizer.normalize(item.getAdresse(), Normalizer.Form.NFD).toLowerCase()).contains(adresse)) {
                 res.add(item);
             }
         }
         return res;
     }
+
 }
