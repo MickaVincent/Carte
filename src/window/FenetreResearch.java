@@ -39,7 +39,7 @@ public class FenetreResearch extends JDialog {
     private List<Musee> newListM;
     private List<MonumentHistorique> newListH;
     private List<PointInteret> newListB;
-
+    private List<PointInteret> returnList;
     //TODO PARSER LA MAP ELEMENT PAR ELEMENT ET RANGER DANS LE TRUC DE RENVOIS
     public FenetreResearch(){
 
@@ -63,12 +63,13 @@ public class FenetreResearch extends JDialog {
 
     private void setLists() {
         listComplete = MonumentList.getFullList();
-        System.out.println(" l l l " +listComplete);
+
         listMonumentsHisto = MonumentList.getMonumentHistoriqueList();
-        System.out.println(listMonumentsHisto);
+
         listMusee = MonumentList.getMuseesList();
-        System.out.println(listMusee);
+
         selectedElements = new ArrayList<>();
+        returnList = new ArrayList<>();
     }
 
     public void setWidgets() {
@@ -206,6 +207,8 @@ public class FenetreResearch extends JDialog {
         b1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                List<PointInteret> ptInt = listResearch.getSelectedValuesList();
+                returnList = ptInt;
                 dispose();
             }
         });
@@ -220,8 +223,9 @@ public class FenetreResearch extends JDialog {
                 for(PointInteret pt : selectedElements){
                     ((DefaultListModel) listResearch.getModel()).addElement(pt);
                 }
-                listResearch.setVisible(true);
 
+                listResearch.setVisible(true);
+                //listResearch.setSelectionInterval(0, listResearch.getModel().getSize());
             }
             @Override
             public void removeUpdate(DocumentEvent e) {
@@ -233,7 +237,7 @@ public class FenetreResearch extends JDialog {
                     ((DefaultListModel) listResearch.getModel()).addElement(pt);
                 }
                 listResearch.setVisible(true);
-
+                //listResearch.setSelectionInterval(0, listResearch.getModel().getSize());
             }
             @Override
             public void changedUpdate(DocumentEvent e) {
@@ -242,7 +246,7 @@ public class FenetreResearch extends JDialog {
     }
     public List<PointInteret> showDialog() {
         setVisible(true);
-        return selectedElements;
+        return returnList;
     }
     public void checkSelection(String recherche){
         if(choice1.equals("Musee")){

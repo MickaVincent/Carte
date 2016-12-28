@@ -192,11 +192,11 @@ public class FenetreMain extends JFrame{
                 panelGauche.flushDisplayedElements();
                 ((DefaultListModel)listDeroulante.getModel()).removeAllElements();
 
-                FenetreResearch wind = new FenetreResearch();
-                List<PointInteret> choix = wind.showDialog();
-                //System.out.println("[" + choix[0] + "," + choix[1] + "]");
                 if(rb1.isSelected()) rb1.setSelected(false);
                 if(rb2.isSelected()) rb2.setSelected(false);
+                FenetreResearch wind = new FenetreResearch();
+                List<PointInteret> choix = wind.showDialog();
+
                 System.out.println("Recherche Avancé a été trigger");
                 //for(MonumentHistorique monHistorique : listMonuments){
                     //((DefaultListModel)listDeroulante.getModel()).addElement(monHistorique);
