@@ -198,9 +198,9 @@ public class FenetreMain extends JFrame{
                 List<PointInteret> choix = wind.showDialog();
 
                 System.out.println("Recherche Avancé a été trigger");
-                //for(MonumentHistorique monHistorique : listMonuments){
-                    //((DefaultListModel)listDeroulante.getModel()).addElement(monHistorique);
-                //}
+                for(PointInteret ptr  : choix){
+                    ((DefaultListModel)listDeroulante.getModel()).addElement(ptr);
+                }
                 scroll.setVisible(true);
             }
         });
