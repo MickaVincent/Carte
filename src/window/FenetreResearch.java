@@ -26,7 +26,7 @@ public class FenetreResearch extends JDialog {
     private String[] tabMonuments = {"Musee", "Monument Historique", "Les deux"};
     private Dimension screenSize;
     private BoxLayout layout = new BoxLayout(this, 0);
-    private JButton b1, b2;
+    private JButton b1;
     private JLabel lbl1, lbl2, lbl3;
     private JTextField fieldRecherche;
     private JList listResearch;
