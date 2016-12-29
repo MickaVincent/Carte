@@ -42,7 +42,7 @@ public class FenetreResearch extends JDialog {
     private List<MonumentHistorique> newListH;
     private List<PointInteret> newListB;
     private List<PointInteret> returnList;
-    //TODO PARSER LA MAP ELEMENT PAR ELEMENT ET RANGER DANS LE TRUC DE RENVOIS
+
     public FenetreResearch(){
 
         setLists();
@@ -266,7 +266,7 @@ public class FenetreResearch extends JDialog {
         }else{
             if(choice1.equals("MonumentHistorique")){
                 if(choice2.equals("Reference")){
-                    newListH = research.getWithReference(recherche, listMonumentsHisto);
+                    newListH = research.getWithReference(String.valueOf(recherche), listMonumentsHisto);
                 }
                 if(choice2.equals("Designation")){
                     newListH = research.getWithDesignation(recherche, listMonumentsHisto);
