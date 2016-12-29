@@ -13,6 +13,8 @@ import javax.swing.event.DocumentListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -109,6 +111,13 @@ public class FenetreResearch extends JDialog {
 
         lbl3 = new JLabel("Mot Clé à utiliser : ");
         fieldRecherche = new JTextField("Entrer mot clé");
+        fieldRecherche.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if(fieldRecherche.getText().equals("Entrer mot clé"))
+                fieldRecherche.setText("");
+            }
+        });
 
         c.gridx = 0;
         c.gridy = 2;
