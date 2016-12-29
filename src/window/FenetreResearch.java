@@ -278,14 +278,15 @@ public class FenetreResearch extends JDialog {
                 selectedElements.add(mus);
             }
         }else{
-            if(choice1.equals("MonumentHistorique")){
-                if(choice2.equals("Reference")){
+            if(choice1.equals("Monument Historique")){
+                if(choice2.equals("Réference")){
+                    System.out.println("recherche par reference de " + recherche);
                     newListH = research.getWithReference(String.valueOf(recherche), listMonumentsHisto);
                 }
                 if(choice2.equals("Designation")){
                     newListH = research.getWithDesignation(recherche, listMonumentsHisto);
                 }
-                if(choice2.equals("Categorie")){
+                if(choice2.equals("Catégorie")){
                     newListH = research.getWithCategorie(recherche, listMonumentsHisto);
                 }
                 for(MonumentHistorique mh : newListH){
