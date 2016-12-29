@@ -1,5 +1,6 @@
 package window;
 
+import com.sun.deploy.util.StringUtils;
 import csvToArray.MonumentHistorique;
 import csvToArray.MonumentList;
 import csvToArray.Musee;
@@ -23,10 +24,15 @@ import java.util.List;
  */
 public class FenetreResearch extends JDialog {
 
+    public static boolean isNumeric(String str)
+    {
+        return str.matches("\\d+(\\.\\d+)?");  //match a number with optional '-' and decimal.
+    }
+
     private String[] tabMonuments = {"Musee", "Monument Historique", "Les deux"};
     private Dimension screenSize;
     private BoxLayout layout = new BoxLayout(this, 0);
-    private JButton b1;
+    private JButton b0, b1;
     private JLabel lbl1, lbl2, lbl3;
     private JTextField fieldRecherche;
     private JList listResearch;
@@ -173,7 +179,9 @@ public class FenetreResearch extends JDialog {
         c.gridx = 0;
         c.gridy = 6;
 
+        b0 = new JButton("Tout sélectionner");
         b1 = new JButton("Afficher les résultats");
+        //this.add(b0, c);
         this.add(b1, c);
 
     }
@@ -219,6 +227,12 @@ public class FenetreResearch extends JDialog {
                 List<PointInteret> ptInt = listResearch.getSelectedValuesList();
                 returnList = ptInt;
                 dispose();
+            }
+        });
+        b0.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                listResearch.setSelectionInterval(0, listResearch.getModel().getSize());
             }
         });
 
@@ -285,14 +299,16 @@ public class FenetreResearch extends JDialog {
                     if(choice2.equals("Commune")){
                         newListB = research.getWithCommune(recherche, listComplete);
                     }
-                    if(choice2.equals("Numéro INSEE")){
+                    if(choice2.equals("Numéro INSEE") && isNumeric(recherche)){
                         newListB = research.getWithInsee(Integer.parseInt(recherche), listComplete);
                     }
-                    if(choice2.equals("Code Postal")){
+                    if(choice2.equals("Code Postal") && isNumeric(recherche)){
                         newListB = research.getWithCP(Integer.parseInt(recherche), listComplete);
                     }
-                    for(PointInteret pt : newListB){
-                        selectedElements.add(pt);
+                    if (newListB != null) {
+                        for (PointInteret pt : newListB) {
+                            selectedElements.add(pt);
+                        }
                     }
                 }
             }
