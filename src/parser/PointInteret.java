@@ -3,7 +3,7 @@ package parser;
 /**
  * Created by Hamor on 19/12/2016.
  */
-public abstract class PointInteret {
+public abstract class PointInteret implements Comparable {
     private int numInsee;
     private float latitude;
     private float longitude;
@@ -26,10 +26,10 @@ public abstract class PointInteret {
     @Override
     public String toString() {
         return "Monument{" +
-                "numInsee=" + numInsee +
+                "nom='" + nom + '\'' +
+                ", numInsee=" + numInsee +
                 ", latitude=" + latitude +
                 ", longitude=" + longitude +
-                ", nom='" + nom + '\'' +
                 ", description='" + description + '\'' +
                 ", commune='" + commune + '\'' +
                 '}';
@@ -65,5 +65,10 @@ public abstract class PointInteret {
 
     public String getCategorie(){
         return "PointInteret";
+    }
+    @Override
+    public int compareTo(Object o) {
+
+        return this.toString().compareTo(o.toString());
     }
 }

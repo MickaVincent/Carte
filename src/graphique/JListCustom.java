@@ -8,15 +8,12 @@ import java.awt.*;
 /**
  * Created by VINCENT MICKAEL on 25/12/2016.
  */
-public class JListCustom extends JLabel implements ListCellRenderer<PointInteret>, Comparable {
+public class JListCustom extends JLabel implements ListCellRenderer<PointInteret> {
+
 
     @Override
-    public int compareTo(Object o) {
-        return 0;
-    }
-
-    @Override
-    public Component getListCellRendererComponent(JList<? extends PointInteret> list, PointInteret value, int index, boolean isSelected, boolean cellHasFocus) {
+    public Component getListCellRendererComponent(JList<? extends PointInteret> list, PointInteret value,
+                                                  int index, boolean isSelected, boolean cellHasFocus) {
         String name = value.getNom();
 
         if (isSelected) {

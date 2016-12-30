@@ -16,6 +16,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class FenetreMain extends JFrame{
@@ -34,6 +36,8 @@ public class FenetreMain extends JFrame{
     private ImagePanel panelGauche;
 
     public FenetreMain(){
+        Collections.sort(listMuseums);
+        Collections.sort(listMonuments);
         this.setTitle("Cartographie de la Franche-Comte");
         this.setResizable(false);
         screenSize = Toolkit.getDefaultToolkit().getScreenSize();

@@ -14,8 +14,8 @@ public class MonumentHistorique extends PointInteret {
     private String siecle;
 
     public MonumentHistorique(int numInsee, float latitude, float longitude, String nom, String desc, String reference,
-                              int departement, String commune, String categorie, String proprietaire, String dateProtection,
-                              String auteurs, String siecle) {
+                              int departement, String commune, String categorie, String proprietaire,
+                              String dateProtection, String auteurs, String siecle) {
         super(numInsee, latitude, longitude, nom, desc, commune, departement);
         this.reference = reference;
         this.commune = commune;
@@ -29,7 +29,8 @@ public class MonumentHistorique extends PointInteret {
     @Override
     public String toString() {
         return  "MonumentHistorique{" +
-                "Latitude='" + super.getLatitude() + '\'' +
+                "Nom= '" + super.getNom() + '\'' +
+                ", Latitude='" + super.getLatitude() + '\'' +
                 ", Longitude='" + super.getLongitude() + '\'' +
                 ", reference='" + reference + '\'' +
                 ", departement=" + super.getDepartement() + '\'' +
