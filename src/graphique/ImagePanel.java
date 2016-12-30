@@ -65,14 +65,11 @@ public class ImagePanel extends JPanel {
         }
     }
 
-    public void  updateDisplayedElements(java.util.List<PointInteret> myList){
+    public void updateDisplayedElements(java.util.List<PointInteret> myList){
         selectedElements = myList;
     }
     public void flushDisplayedElements(){
         selectedElements = null;
-        if(selectedElements == null){
-            System.out.println("Flushed selected element list");
-        }
     }
     public int getWidthCarte() {
         return widthCarte;

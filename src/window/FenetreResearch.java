@@ -203,7 +203,7 @@ public class FenetreResearch extends JDialog {
 
         this.add(scroll, c);
 
-        for(PointInteret pt : listComplete){
+        for(PointInteret pt : listMusee){
             ((DefaultListModel)listResearch.getModel()).addElement(pt);
         }
 
@@ -225,7 +225,6 @@ public class FenetreResearch extends JDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
                 choice1 = (String) comboBox.getSelectedItem();
-                System.out.println("Choice 1 Changed : " + choice1);
                 if(choice1.equals("Musee")){
                     comboBoxCriteres.removeAllItems();
                     comboBoxCriteres.addItem("Adresse");
@@ -253,7 +252,7 @@ public class FenetreResearch extends JDialog {
                     comboBoxCriteres.addItem("Designation");
                     comboBoxCriteres.addItem("Catégorie");
                     comboBoxCriteres.addItem("Réference");
-                    comboBoxCriteres.setSelectedItem("Designation");
+                    comboBoxCriteres.setSelectedItem("Nom");
                 }
                 ((DefaultListModel)listResearch.getModel()).removeAllElements();
                 selectedElements.removeAll(selectedElements);
@@ -270,6 +269,15 @@ public class FenetreResearch extends JDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
                 choice2 = (String)comboBoxCriteres.getSelectedItem();
+                fieldRecherche.setText("");
+//                ((DefaultListModel)listResearch.getModel()).removeAllElements();
+//                selectedElements.removeAll(selectedElements);
+//                listResearch.setVisible(true);
+//                checkSelection(fieldRecherche.getText());
+//                for(PointInteret pt : selectedElements){
+//                    ((DefaultListModel) listResearch.getModel()).addElement(pt);
+//                }
+
             }
         });
         b1.addActionListener(new ActionListener() {
