@@ -1,12 +1,11 @@
 package window;
 
-import com.sun.deploy.util.StringUtils;
-import csvToArray.MonumentHistorique;
-import csvToArray.MonumentList;
-import csvToArray.Musee;
-import csvToArray.PointInteret;
+import parser.MonumentHistorique;
+import parser.MonumentList;
+import parser.Musee;
+import parser.PointInteret;
 import graphique.JListCustom;
-import search.research;
+import parser.Research;
 
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
@@ -69,6 +68,38 @@ public class FenetreResearch extends JDialog {
         choice2 = "Adresse";
     }
 
+    private List<MonumentHistorique> castMH(List<PointInteret> lpi){
+        List<MonumentHistorique> res = new ArrayList<MonumentHistorique>();
+        for (PointInteret item : lpi){
+            res.add((MonumentHistorique)item);
+        }
+        return res;
+    }
+
+    private List<Musee> castM(List<PointInteret> lpi){
+        List<Musee> res = new ArrayList<Musee>();
+        for (PointInteret item : lpi){
+            res.add((Musee)item);
+        }
+        return res;
+    }
+
+    private List<PointInteret> castPI(List<MonumentHistorique> mh){
+        List<PointInteret> res = new ArrayList<PointInteret>();
+        for (MonumentHistorique item : mh){
+            res.add(item);
+        }
+        return res;
+    }
+
+    private List<PointInteret> castPi(List<Musee> m){
+        List<PointInteret> res = new ArrayList<PointInteret>();
+        for (Musee item : m){
+            res.add(item);
+        }
+        return res;
+    }
+
     private void setLists() {
         listComplete = MonumentList.getFullList();
 
@@ -108,6 +139,10 @@ public class FenetreResearch extends JDialog {
 
         comboBoxCriteres = new JComboBox<>();
         comboBoxCriteres.addItem("Adresse");
+        comboBoxCriteres.addItem("Nom");
+        comboBoxCriteres.addItem("Commune");
+        comboBoxCriteres.addItem("Numéro INSEE");
+        comboBoxCriteres.addItem("Code Postal");
         comboBoxCriteres.setSelectedIndex(0);
 
         c.gridx = 1;
@@ -115,8 +150,8 @@ public class FenetreResearch extends JDialog {
 
         this.add(comboBoxCriteres, c);
 
-        lbl3 = new JLabel("Mot Clé à utiliser : ");
-        fieldRecherche = new JTextField("Entrer mot clé");
+        lbl3 = new JLabel("Mot clé à utiliser : ");
+        fieldRecherche = new JTextField("");
         fieldRecherche.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -194,6 +229,10 @@ public class FenetreResearch extends JDialog {
                 if(choice1.equals("Musee")){
                     comboBoxCriteres.removeAllItems();
                     comboBoxCriteres.addItem("Adresse");
+                    comboBoxCriteres.addItem("Nom");
+                    comboBoxCriteres.addItem("Commune");
+                    comboBoxCriteres.addItem("Numéro INSEE");
+                    comboBoxCriteres.addItem("Code Postal");
                     comboBoxCriteres.setSelectedItem("Adresse");
                 }
                 if(choice1.equals("Les deux")){
@@ -207,18 +246,30 @@ public class FenetreResearch extends JDialog {
                 }
                 if(choice1.equals("Monument Historique")){
                     comboBoxCriteres.removeAllItems();
+                    comboBoxCriteres.addItem("Nom");
+                    comboBoxCriteres.addItem("Commune");
+                    comboBoxCriteres.addItem("Numéro INSEE");
+                    comboBoxCriteres.addItem("Code Postal");
                     comboBoxCriteres.addItem("Designation");
                     comboBoxCriteres.addItem("Catégorie");
                     comboBoxCriteres.addItem("Réference");
                     comboBoxCriteres.setSelectedItem("Designation");
                 }
+                ((DefaultListModel)listResearch.getModel()).removeAllElements();
+                selectedElements.removeAll(selectedElements);
+                listResearch.setVisible(true);
+                checkSelection(fieldRecherche.getText());
+                for(PointInteret pt : selectedElements){
+                    ((DefaultListModel) listResearch.getModel()).addElement(pt);
+                }
+
+                listResearch.setVisible(true);
             }
         });
         comboBoxCriteres.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 choice2 = (String)comboBoxCriteres.getSelectedItem();
-                System.out.println("Choice 2 Changed : " + choice2);
             }
         });
         b1.addActionListener(new ActionListener() {
@@ -232,7 +283,7 @@ public class FenetreResearch extends JDialog {
         b0.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                listResearch.setSelectionInterval(0, listResearch.getModel().getSize());
+                listResearch.setSelectionInterval(0, listResearch.getModel().getSize()-1);
             }
         });
 
@@ -248,7 +299,6 @@ public class FenetreResearch extends JDialog {
                 }
 
                 listResearch.setVisible(true);
-                //listResearch.setSelectionInterval(0, listResearch.getModel().getSize());
             }
             @Override
             public void removeUpdate(DocumentEvent e) {
@@ -260,10 +310,10 @@ public class FenetreResearch extends JDialog {
                     ((DefaultListModel) listResearch.getModel()).addElement(pt);
                 }
                 listResearch.setVisible(true);
-                //listResearch.setSelectionInterval(0, listResearch.getModel().getSize());
             }
             @Override
             public void changedUpdate(DocumentEvent e) {
+
             }
         });
     }
@@ -273,38 +323,66 @@ public class FenetreResearch extends JDialog {
     }
     public void checkSelection(String recherche){
         if(choice1.equals("Musee")){
-            newListM = research.getWithAdresse(recherche, listMusee);
-            for(Musee mus : newListM){
-                selectedElements.add(mus);
+            if(choice2.equals("Nom")){
+                newListM = castM(Research.getWithName(recherche, castPi(listMusee)));
+            }
+            if(choice2.equals("Commune")){
+                newListM = castM(Research.getWithCommune(recherche, castPi(listMusee)));
+            }
+            if(choice2.equals("Numéro INSEE") && isNumeric(recherche)){
+                newListM = castM(Research.getWithInsee(Integer.parseInt(recherche), castPi(listMusee)));
+            }
+            if(choice2.equals("Code Postal") && isNumeric(recherche)){
+                newListM = castM(Research.getWithCP(Integer.parseInt(recherche), castPi(listMusee)));
+            }if (choice2.equals("Adresse")) {
+                newListM = Research.getWithAdresse(recherche, listMusee);
+            }
+            if (newListM != null) {
+                for (Musee mus : newListM) {
+                    selectedElements.add(mus);
+                }
             }
         }else{
             if(choice1.equals("Monument Historique")){
                 if(choice2.equals("Réference")){
-                    System.out.println("recherche par reference de " + recherche);
-                    newListH = research.getWithReference(String.valueOf(recherche), listMonumentsHisto);
+                    newListH = Research.getWithReference(String.valueOf(recherche), listMonumentsHisto);
                 }
                 if(choice2.equals("Designation")){
-                    newListH = research.getWithDesignation(recherche, listMonumentsHisto);
+                    newListH = Research.getWithDesignation(recherche, listMonumentsHisto);
                 }
                 if(choice2.equals("Catégorie")){
-                    newListH = research.getWithCategorie(recherche, listMonumentsHisto);
+                    newListH = Research.getWithCategorie(recherche, listMonumentsHisto);
                 }
-                for(MonumentHistorique mh : newListH){
-                    selectedElements.add(mh);
+                if(choice2.equals("Nom")){
+                    newListH = castMH(Research.getWithName(recherche, castPI(listMonumentsHisto)));
+                }
+                if(choice2.equals("Commune")){
+                    newListH = castMH(Research.getWithCommune(recherche, castPI(listMonumentsHisto)));
+                }
+                if(choice2.equals("Numéro INSEE") && isNumeric(recherche)){
+                    newListH = castMH(Research.getWithInsee(Integer.parseInt(recherche), castPI(listMonumentsHisto)));
+                }
+                if(choice2.equals("Code Postal") && isNumeric(recherche)){
+                    newListH = castMH(Research.getWithCP(Integer.parseInt(recherche), castPI(listMonumentsHisto)));
+                }
+                if (newListH != null) {
+                    for (MonumentHistorique mh : newListH) {
+                        selectedElements.add(mh);
+                    }
                 }
             }else{
                 if(choice1.equals("Les deux")){
                     if(choice2.equals("Nom")){
-                        newListB = research.getWithName(recherche, listComplete);
+                        newListB = Research.getWithName(recherche, listComplete);
                     }
                     if(choice2.equals("Commune")){
-                        newListB = research.getWithCommune(recherche, listComplete);
+                        newListB = Research.getWithCommune(recherche, listComplete);
                     }
                     if(choice2.equals("Numéro INSEE") && isNumeric(recherche)){
-                        newListB = research.getWithInsee(Integer.parseInt(recherche), listComplete);
+                        newListB = Research.getWithInsee(Integer.parseInt(recherche), listComplete);
                     }
                     if(choice2.equals("Code Postal") && isNumeric(recherche)){
-                        newListB = research.getWithCP(Integer.parseInt(recherche), listComplete);
+                        newListB = Research.getWithCP(Integer.parseInt(recherche), listComplete);
                     }
                     if (newListB != null) {
                         for (PointInteret pt : newListB) {

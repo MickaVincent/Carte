@@ -1,4 +1,4 @@
-package csvToArray;
+package parser;
 
 /**
  * Created by Hamor on 19/12/2016.

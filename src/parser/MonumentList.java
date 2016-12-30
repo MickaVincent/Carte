@@ -1,4 +1,4 @@
-package csvToArray;
+package parser;
 
 
 import java.io.File;
@@ -12,8 +12,8 @@ public class MonumentList {
     private static List<Musee> museesList = new ArrayList<Musee>();
     private static List<MonumentHistorique> monumentHistoriqueList = new ArrayList<MonumentHistorique>();
 
-    static String pathMusee;
-    static String pathMonument;
+    private static String pathMusee;
+    private static String pathMonument;
 
     private static void setPath(){
         pathMusee = "res" + File.separator + "Musee.csv";

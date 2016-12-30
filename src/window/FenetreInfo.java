@@ -1,14 +1,12 @@
 package window;
 
-import csvToArray.PointInteret;
+import parser.PointInteret;
 import graphique.JListCustom;
-import javafx.scene.control.SplitPane;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.*;
-import java.util.*;
 
 /**
  * Created by VINCENT MICKAEL on 26/12/2016.
@@ -137,12 +135,13 @@ public class FenetreInfo extends JDialog {
         splittedPane.setDividerLocation(300);
         scrollerTop = new JScrollPane();
         scrollerTop.setPreferredSize(new Dimension(800, 300));
-        System.out.println("Liste dans FenetreInfo" + listTop.getModel());
 
         listTop.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
         listTop.setLayoutOrientation(JList.VERTICAL);
 
         this.listTop.setCellRenderer(new JListCustom());
+        listTop.setSelectedIndex(0);
+
         scrollerTop.setViewportView(this.listTop);
 
         splittedPane.setTopComponent(scrollerTop);
@@ -159,5 +158,7 @@ public class FenetreInfo extends JDialog {
         add(splittedPane);
 
         pack();
+        p = (PointInteret) listTop.getSelectedValue();
+        printInformations(p);
     }
 }

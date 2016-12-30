@@ -1,6 +1,6 @@
 package graphique;
 
-import csvToArray.PointInteret;
+import parser.PointInteret;
 
 import java.awt.image.BufferedImage;
 

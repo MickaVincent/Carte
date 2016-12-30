@@ -1,12 +1,9 @@
 package graphique;
 
-import csvToArray.MonumentHistorique;
-import csvToArray.Musee;
-import csvToArray.PointInteret;
+import parser.PointInteret;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.File;
 
 /**
  * Created by VINCENT MICKAEL on 25/12/2016.

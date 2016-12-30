@@ -1,6 +1,6 @@
 package graphique;
 
-import csvToArray.PointInteret;
+import parser.PointInteret;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -8,7 +8,6 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.*;
 import java.util.List;
 
 /**
@@ -20,7 +19,7 @@ public class ImagePanel extends JPanel {
     private int widthCarte;
     private int heightCarte;
     private BufferedImage imgMap = null;
-    private resManager resMgr = resManager.getInstance();
+    private ResManager resMgr = ResManager.getInstance();
     private List<PointInteret> selectedElements = null;
         public ImagePanel(){
 

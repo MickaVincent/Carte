@@ -1,12 +1,12 @@
 package window;
 
-import csvToArray.MonumentHistorique;
-import csvToArray.MonumentList;
-import csvToArray.Musee;
-import csvToArray.PointInteret;
+import parser.MonumentHistorique;
+import parser.MonumentList;
+import parser.Musee;
+import parser.PointInteret;
 import graphique.ImagePanel;
 import graphique.JListCustom;
-import graphique.resManager;
+import graphique.ResManager;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
@@ -20,7 +20,7 @@ import java.util.List;
 
 public class FenetreMain extends JFrame{
     private Dimension screenSize;
-    private resManager mgr = resManager.getInstance();
+    private ResManager mgr = ResManager.getInstance();
     private List<PointInteret> elementsSelectionnes = null;
     private Container contLeft;
     private JPanel panelRight;
@@ -38,7 +38,6 @@ public class FenetreMain extends JFrame{
         this.setResizable(false);
         screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         panelGauche = new ImagePanel();
-        System.out.println(panelGauche.getHeightCarte());
 
         setWindowParameters();
         createWidget();
@@ -87,7 +86,7 @@ public class FenetreMain extends JFrame{
         listDeroulante.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
         listDeroulante.setLayoutOrientation(JList.VERTICAL);
 
-        resManager man = resManager.getInstance();
+        ResManager man = ResManager.getInstance();
 
         listDeroulante.setCellRenderer(new JListCustom());
         scroll.setViewportView(listDeroulante);
@@ -143,7 +142,6 @@ public class FenetreMain extends JFrame{
                     }
                     panelGauche.flushDisplayedElements();
                     ((DefaultListModel)listDeroulante.getModel()).removeAllElements();
-                    System.out.println("rb1/Musée a été trigger");
                     for(Musee mus : listMuseums){
                         ((DefaultListModel)listDeroulante.getModel()).addElement(mus);
                     }
@@ -162,7 +160,6 @@ public class FenetreMain extends JFrame{
                     }
                     panelGauche.flushDisplayedElements();
                     ((DefaultListModel)listDeroulante.getModel()).removeAllElements();
-                    System.out.println("rb2 a été trigger");
                     for(MonumentHistorique monHistorique : listMonuments){
                             ((DefaultListModel)listDeroulante.getModel()).addElement(monHistorique);
                     }
@@ -176,12 +173,7 @@ public class FenetreMain extends JFrame{
             @Override
             public void valueChanged(ListSelectionEvent e) {
                 if(e.getValueIsAdjusting()){
-                    System.out.println("First index : " + e.getFirstIndex() + " Second index : " + e.getLastIndex());
-
                     elementsSelectionnes = listDeroulante.getSelectedValuesList();
-                    System.out.println("Taille de la liste ? : " + listDeroulante.getSelectedValuesList().size());
-                    //System.out.println(listDeroulante);
-                    System.out.println("New elements selectionnés : " + elementsSelectionnes);
                     refresh(elementsSelectionnes);
                 }
             }
@@ -197,7 +189,6 @@ public class FenetreMain extends JFrame{
                 FenetreResearch wind = new FenetreResearch();
                 List<PointInteret> choix = wind.showDialog();
 
-                System.out.println("Recherche Avancé a été trigger");
                 for(PointInteret ptr  : choix){
                     ((DefaultListModel)listDeroulante.getModel()).addElement(ptr);
                 }

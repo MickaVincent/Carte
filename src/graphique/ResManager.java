@@ -1,32 +1,29 @@
 package graphique;
 
 import javax.imageio.ImageIO;
-import javax.swing.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
 /**
  * Created by mvincent on 19/12/16.
  */
-public class resManager {
+public class ResManager {
     public Map<String, BufferedImage> getMapResources() {
         return mapResources;
     }
 
     private Map<String, BufferedImage> mapResources = new HashMap<String, BufferedImage>();
-    private static resManager ourInstance = new resManager();
+    private static ResManager ourInstance = new ResManager();
 
-    public static resManager getInstance() {
+    public static ResManager getInstance() {
         //loadResources(pathname);
         return ourInstance;
     }
 
-    private resManager() {
+    private ResManager() {
 
     }
     public void loadResources(String pathToResources) throws IOException {

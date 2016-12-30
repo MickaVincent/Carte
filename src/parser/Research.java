@@ -1,8 +1,8 @@
-package search;
+package parser;
 
-import csvToArray.MonumentHistorique;
-import csvToArray.Musee;
-import csvToArray.PointInteret;
+import parser.MonumentHistorique;
+import parser.Musee;
+import parser.PointInteret;
 
 import java.text.Normalizer;
 import java.util.ArrayList;
@@ -13,7 +13,7 @@ import java.util.List;
  */
 
 
-public final class research {
+public final class Research {
 
     //Renvoie une liste suivant si "name" est dans un nom ou designation d'un point d'interet
     public static List<PointInteret> getWithName(String name, List<PointInteret> m){
