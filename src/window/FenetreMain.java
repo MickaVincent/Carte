@@ -201,6 +201,9 @@ public class FenetreMain extends JFrame{
                 for(PointInteret ptr  : choix){
                     ((DefaultListModel)listDeroulante.getModel()).addElement(ptr);
                 }
+                listDeroulante.setSelectionInterval(0, listDeroulante.getModel().getSize()-1);
+                elementsSelectionnes = listDeroulante.getSelectedValuesList();
+                refresh(elementsSelectionnes);
                 scroll.setVisible(true);
             }
         });
